@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼎信助贷 — 专业贷款服务 | 让融资更简单</title>
+    <meta name="description" content="鼎信助贷，专业提供个人信用贷款、企业经营贷款、房产抵押贷款等一站式融资服务。与50+银行合作，最快1天放款。">
+    <meta name="keywords" content="助贷,贷款服务,信用贷款,抵押贷款,企业经营贷,融资服务">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* ===== 基础重置 & 变量 ===== */
+        :root {
+            --primary: #1a56db;
+            --primary-dark: #1340a0;
+            --primary-light: #3b82f6;
+            --accent: #f59e0b;
+            --accent-dark: #d97706;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --bg-dark: #0f172a;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --text-white: #f1f5f9;
+            --border: #e2e8f0;
+            --gradient: linear-gradient(135deg, #1a56db 0%, #1e40af 100%);
+            --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,.12);
+            --radius: 12px;
+            --max-w: 1200px;
+            --transition: .3s cubic-bezier(.4,0,.2,1);
+        }
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;scroll-padding-top:80px}
+        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--text);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+        a{color:var(--primary);text-decoration:none;transition:color var(--transition)}
+        a:hover{color:var(--primary-dark)}
+        img{max-width:100%;height:auto}
+        ul{list-style:none}
+        .container{width:100%;max-width:var(--max-w);margin:0 auto;padding:0 24px}
+        section{padding:96px 0}
+        .section-tag{display:inline-block;font-size:14px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+        .section-title{font-size:36px;font-weight:800;line-height:1.25;margin-bottom:16px;color:var(--text)}
+        .section-desc{font-size:18px;color:var(--text-light);max-width:640px;margin:0 auto 56px;text-align:center}
+        .text-center{text-align:center}
+
+        /* ===== 导航栏 ===== */
+        .navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(226,232,240,.5);transition:var(--transition)}
+        .navbar.scrolled{background:rgba(255,255,255,.97);box-shadow:var(--shadow)}
+        .navbar .container{display:flex;align-items:center;justify-content:space-between;height:72px}
+        .logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800;color:var(--text)}
+        .logo-icon{width:36px;height:36px;background:var(--gradient);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px}
+        .logo span{color:var(--primary)}
+        .nav-links{display:flex;align-items:center;gap:32px}
+        .nav-links a{font-size:15px;font-weight:500;color:var(--text-light);position:relative;padding:4px 0}
+        .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--primary);transition:var(--transition)}
+        .nav-links a:hover{color:var(--text)}
+        .nav-links a:hover::after{width:100%}
+        .nav-cta{background:var(--gradient);color:#fff!important;padding:10px 24px!important;border-radius:8px;font-weight:600!important}
+        .nav-cta::after{display:none!important}
+        .nav-cta:hover{opacity:.9;box-shadow:0 4px 15px rgba(26,86,219,.4)}
+        .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+        .menu-toggle span{display:block;width:26px;height:2.5px;background:var(--text);border-radius:2px;transition:var(--transition)}
+
+        /* ===== Hero ===== */
+        .hero{min-height:100vh;display:flex;align-items:center;background:var(--bg-alt);position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;top:-50%;right:-30%;width:800px;height:800px;background:radial-gradient(circle,rgba(26,86,219,.06) 0%,transparent 70%);border-radius:50%}
+        .hero::after{content:'';position:absolute;bottom:-30%;left:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(245,158,11,.05) 0%,transparent 70%);border-radius:50%}
+        .hero .container{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(26,86,219,.08);color:var(--primary);padding:6px 16px;border-radius:100px;font-size:14px;font-weight:600;margin-bottom:20px}
+        .hero h1{font-size:52px;font-weight:900;line-height:1.1;margin-bottom:20px}
+        .hero h1 .highlight{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero p{font-size:20px;color:var(--text-light);line-height:1.8;margin-bottom:36px;max-width:540px}
+        .hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+        .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:8px;font-size:16px;font-weight:600;border:none;cursor:pointer;transition:var(--transition)}
+        .btn-primary{background:var(--gradient);color:#fff;box-shadow:0 4px 14px rgba(26,86,219,.3)}
+        .btn-primary:hover{box-shadow:0 8px 25px rgba(26,86,219,.4);transform:translateY(-2px);color:#fff}
+        .btn-outline{background:transparent;color:var(--text);border:2px solid var(--border)}
+        .btn-outline:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
+        .btn-accent{background:var(--gradient-accent);color:#fff;box-shadow:0 4px 14px rgba(245,158,11,.3)}
+        .btn-accent:hover{box-shadow:0 8px 25px rgba(245,158,11,.4);transform:translateY(-2px);color:#fff}
+        .hero-stats{display:flex;gap:48px;margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
+        .hero-stat strong{font-size:32px;font-weight:800;display:block;color:var(--text)}
+        .hero-stat span{font-size:14px;color:var(--text-light)}
+        .hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
+        .hero-card{background:#fff;border-radius:20px;padding:40px;box-shadow:var(--shadow-lg);width:100%;max-width:480px}
+        .hero-card-header{display:flex;justify-content:space-between;margin-bottom:24px}
+        .hero-card-header h3{font-size:18px;font-weight:700}
+        .hero-card-header span{font-size:14px;color:var(--text-light)}
+        .loan-calc .calc-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);font-size:15px}
+        .loan-calc .calc-row:last-child{border-bottom:none;font-weight:700;font-size:17px;color:var(--primary)}
+        .calc-input-group{margin-top:20px}
+        .calc-input-group label{font-size:14px;font-weight:600;color:var(--text-light);display:block;margin-bottom:6px}
+        .calc-input-group input[type=range]{width:100%;-webkit-appearance:none;height:6px;border-radius:3px;background:var(--border);outline:none}
+        .calc-input-group input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--primary);cursor:pointer;box-shadow:0 2px 6px rgba(26,86,219,.3)}
+        .calc-value{font-weight:700;color:var(--primary);font-size:18px}
+
+        /* ===== 合作伙伴 ===== */
+        .partners{background:var(--bg-alt);padding:48px 0}
+        .partners p{text-align:center;font-size:14px;color:var(--text-light);margin-bottom:24px;letter-spacing:1px}
+        .partner-logos{display:flex;justify-content:center;flex-wrap:wrap;gap:32px 48px;align-items:center;opacity:.6}
+        .partner-logos span{font-size:20px;font-weight:700;color:var(--text-light);padding:8px 16px;border:1px solid var(--border);border-radius:8px;background:#fff}
+
+        /* ===== 关于我们 ===== */
+        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+        .about-text h2{font-size:36px;font-weight:800;line-height:1.25;margin-bottom:20px}
+        .about-text p{color:var(--text-light);font-size:16px;line-height:1.8;margin-bottom:16px}
+        .about-features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+        .about-feature{display:flex;gap:12px;align-items:start}
+        .about-feature .icon{width:24px;height:24px;background:rgba(26,86,219,.1);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--primary);flex-shrink:0;font-size:14px}
+        .about-feature strong{font-size:15px;display:block;margin-bottom:2px}
+        .about-feature span{font-size:13px;color:var(--text-light)}
+        .about-image{background:var(--gradient);border-radius:20px;padding:40px;color:#fff;min-height:320px;display:flex;flex-direction:column;justify-content:center}
+        .about-image blockquote{font-size:20px;font-weight:600;line-height:1.6;margin-bottom:20px;font-style:italic}
+        .about-image cite{font-style:normal;font-size:14px;opacity:.8}
+
+        /* ===== 服务 ===== */
+        #services{background:var(--bg-alt)}
+        .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .service-card{background:#fff;border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);transition:var(--transition);border:1px solid var(--border);position:relative;overflow:hidden}
+        .service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--primary-light)}
+        .service-card .icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px}
+        .service-card:nth-child(1) .icon{background:rgba(26,86,219,.1);color:var(--primary)}
+        .service-card:nth-child(2) .icon{background:rgba(245,158,11,.1);color:var(--accent)}
+        .service-card:nth-child(3) .icon{background:rgba(16,185,129,.1);color:#10b981}
+        .service-card:nth-child(4) .icon{background:rgba(239,68,68,.1);color:#ef4444}
+        .service-card:nth-child(5) .icon{background:rgba(139,92,246,.1);color:#8b5cf6}
+        .service-card:nth-child(6) .icon{background:rgba(236,72,153,.1);color:#ec4899}
+        .service-card h3{font-size:20px;font-weight:700;margin-bottom:10px}
+        .service-card p{font-size:14px;color:var(--text-light);line-height:1.7;margin-bottom:16px}
+        .service-card .tags{display:flex;flex-wrap:wrap;gap:6px}
+        .service-card .tags span{font-size:12px;padding:4px 10px;background:var(--bg-alt);border-radius:20px;color:var(--text-light)}
+        .service-card .rate{display:block;margin-top:16px;font-size:13px;color:var(--primary);font-weight:600}
+
+        /* ===== 办理流程 ===== */
+        .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+        .process-steps::before{content:'';position:absolute;top:40px;left:calc(12.5% + 12px);width:calc(75% - 24px);height:2px;background:linear-gradient(90deg,var(--primary),var(--primary-light));z-index:0}
+        .process-step{text-align:center;position:relative;z-index:1}
+        .process-step .num{width:80px;height:80px;border-radius:50%;background:var(--gradient);color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;margin:0 auto 20px;box-shadow:0 4px 20px rgba(26,86,219,.25)}
+        .process-step h4{font-size:18px;font-weight:700;margin-bottom:8px}
+        .process-step p{font-size:14px;color:var(--text-light);line-height:1.6}
+
+        /* ===== 优势 ===== */
+        .advantages{background:var(--bg-dark);color:var(--text-white)}
+        .advantages .section-title{color:#fff}
+        .advantages .section-desc{color:rgba(255,255,255,.6)}
+        .adv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+        .adv-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:28px;text-align:center;transition:var(--transition)}
+        .adv-card:hover{background:rgba(255,255,255,.08);transform:translateY(-4px)}
+        .adv-card .icon{font-size:40px;margin-bottom:16px}
+        .adv-card h4{font-size:18px;font-weight:700;margin-bottom:8px}
+        .adv-card p{font-size:14px;opacity:.6;line-height:1.6}
+        .adv-card strong{display:block;font-size:28px;color:var(--accent);margin-bottom:4px}
+
+        /* ===== 成功案例 ===== */
+        .cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .case-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:var(--transition)}
+        .case-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+        .case-body{padding:24px}
+        .case-tag{display:inline-block;font-size:12px;padding:4px 12px;border-radius:20px;background:rgba(26,86,219,.08);color:var(--primary);font-weight:600;margin-bottom:10px}
+        .case-card h4{font-size:17px;font-weight:700;margin-bottom:8px}
+        .case-card p{font-size:14px;color:var(--text-light);margin-bottom:12px;line-height:1.6}
+        .case-meta{display:flex;gap:20px;font-size:13px;color:var(--text-light)}
+        .case-meta span{display:flex;align-items:center;gap:4px}
+
+        /* ===== FAQ ===== */
+        #faq{background:var(--bg-alt)}
+        .faq-list{max-width:800px;margin:0 auto}
+        .faq-item{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;background:#fff;overflow:hidden;transition:var(--transition)}
+        .faq-item.active{border-color:var(--primary-light);box-shadow:0 4px 12px rgba(26,86,219,.08)}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;cursor:pointer;font-size:16px;font-weight:600;transition:var(--transition)}
+        .faq-q:hover{color:var(--primary)}
+        .faq-q .arrow{font-size:12px;transition:var(--transition);color:var(--text-light)}
+        .faq-item.active .faq-q .arrow{transform:rotate(180deg);color:var(--primary)}
+        .faq-a{padding:0 24px;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+        .faq-item.active .faq-a{max-height:300px;padding:0 24px 20px}
+        .faq-a p{font-size:15px;color:var(--text-light);line-height:1.8}
+
+        /* ===== 联系我们 ===== */
+        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+        .contact-info h2{font-size:32px;font-weight:800;margin-bottom:16px}
+        .contact-info p{color:var(--text-light);margin-bottom:32px}
+        .contact-items{display:flex;flex-direction:column;gap:20px}
+        .contact-item{display:flex;gap:16px;align-items:center}
+        .contact-item .icon{width:48px;height:48px;border-radius:12px;background:rgba(26,86,219,.08);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+        .contact-item h4{font-size:14px;color:var(--text-light);font-weight:500}
+        .contact-item p{font-size:16px;font-weight:600;color:var(--text);margin-bottom:0}
+        .contact-form{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow)}
+        .contact-form h3{font-size:20px;font-weight:700;margin-bottom:20px}
+        .form-group{margin-bottom:16px}
+        .form-group label{display:block;font-size:14px;font-weight:600;color:var(--text-light);margin-bottom:6px}
+        .form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:15px;transition:var(--transition);outline:none;font-family:inherit}
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary-light);box-shadow:0 0 0 3px rgba(26,86,219,.1)}
+        .form-group textarea{resize:vertical;min-height:100px}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+        /* ===== Footer ===== */
+        footer{background:var(--bg-dark);color:var(--text-white);padding:64px 0 0}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:24px}
+        .footer-brand .logo{color:#fff;margin-bottom:12px}
+        .footer-brand p{font-size:14px;opacity:.6;line-height:1.8;max-width:300px}
+        .footer-col h4{font-size:16px;font-weight:700;margin-bottom:20px;color:#fff}
+        .footer-col ul li{margin-bottom:10px}
+        .footer-col ul a{color:rgba(255,255,255,.6);font-size:14px;transition:var(--transition)}
+        .footer-col ul a:hover{color:#fff}
+        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-bottom:24px;font-size:13px;opacity:.5}
+
+        /* ===== 回到顶部 ===== */
+        .back-top{position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;background:var(--gradient);color:#fff;border:none;cursor:pointer;font-size:20px;box-shadow:0 4px 14px rgba(26,86,219,.3);transition:var(--transition);opacity:0;visibility:hidden;transform:translateY(20px);z-index:999}
+        .back-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+        .back-top:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(26,86,219,.4)}
+
+        /* ===== 移动端响应 ===== */
+        @media(max-width:1024px){
+            .services-grid{grid-template-columns:repeat(2,1fr)}
+            .adv-grid{grid-template-columns:repeat(2,1fr)}
+            .cases-grid{grid-template-columns:repeat(2,1fr)}
+        }
+        @media(max-width:768px){
+            section{padding:64px 0}
+            .section-title{font-size:28px}
+            .menu-toggle{display:flex}
+            .nav-links{position:fixed;top:72px;left:0;width:100%;background:#fff;flex-direction:column;padding:24px;gap:16px;box-shadow:var(--shadow-lg);transform:translateY(-100%);opacity:0;transition:var(--transition);pointer-events:none}
+            .nav-links.open{transform:translateY(0);opacity:1;pointer-events:all}
+            .hero{min-height:auto;padding:120px 0 64px}
+            .hero .container{grid-template-columns:1fr;gap:40px}
+            .hero h1{font-size:34px}
+            .hero p{font-size:17px}
+            .hero-stats{gap:24px;flex-wrap:wrap}
+            .hero-stat strong{font-size:26px}
+            .hero-card{padding:24px}
+            .about-grid{grid-template-columns:1fr}
+            .about-features{grid-template-columns:1fr}
+            .services-grid{grid-template-columns:1fr}
+            .process-steps{grid-template-columns:1fr 1fr}
+            .process-steps::before{display:none}
+            .adv-grid{grid-template-columns:1fr 1fr}
+            .cases-grid{grid-template-columns:1fr}
+            .contact-grid{grid-template-columns:1fr}
+            .form-row{grid-template-columns:1fr}
+            .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+            .footer-bottom{flex-direction:column;gap:8px;text-align:center}
+        }
+        @media(max-width:480px){
+            .process-steps{grid-template-columns:1fr}
+            .adv-grid{grid-template-columns:1fr}
+            .footer-grid{grid-template-columns:1fr}
+            .hero-btns{flex-direction:column}
+            .hero-btns .btn{width:100%;justify-content:center}
+        }
+    </style>
+</head>
+<body>
+
+<!-- ====== 导航栏 ====== -->
+<nav class="navbar" id="navbar">
+    <div class="container">
+        <a href="#" class="logo">
+            <div class="logo-icon">鼎</div>
+            鼎信<span>助贷</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">关于我们</a></li>
+            <li><a href="#services">服务项目</a></li>
+            <li><a href="#process">办理流程</a></li>
+            <li><a href="#cases">成功案例</a></li>
+            <li><a href="#faq">常见问题</a></li>
+            <li><a href="#contact" class="nav-cta">立即咨询</a></li>
+        </ul>
+        <button class="menu-toggle" id="menuToggle" aria-label="菜单">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== Hero ====== -->
+<section class="hero" id="hero">
+    <div class="container">
+        <div class="hero-text">
+            <div class="hero-badge">🏦 与50+银行达成深度合作</div>
+            <h1>让融资<br><span class="highlight">更简单、更高效</span></h1>
+            <p>鼎信助贷 — 一站式贷款服务平台，为您匹配合适的银行产品。个人信贷、企业经营贷、抵押贷款，最快1天放款。</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary">📞 免费咨询</a>
+                <a href="#services" class="btn btn-outline">了解服务 →</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat"><strong>50+</strong><span>合作银行</span></div>
+                <div class="hero-stat"><strong>12亿+</strong><span>累计放款</span></div>
+                <div class="hero-stat"><strong>98.6%</strong><span>客户满意度</span></div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card">
+                <div class="hero-card-header">
+                    <h3>📊 快速测算</h3>
+                    <span>额度 × 利率</span>
+                </div>
+                <div class="loan-calc">
+                    <div class="calc-row"><span>信用额度预估</span><span class="calc-value" id="calcAmount">30万</span></div>
+                    <div class="calc-row"><span>参考月利率</span><span>0.35% - 0.65%</span></div>
+                    <div class="calc-row"><span>还款期限</span><span>12 - 60 期</span></div>
+                    <div class="calc-row" style="border-bottom:none"><span>月供参考</span><span class="calc-value" id="calcPayment">≈ 5,280元/月</span></div>
+                </div>
+                <div class="calc-input-group">
+                    <label>您的月收入：<strong id="incomeLabel">8,000元</strong></label>
+                    <input type="range" id="incomeSlider" min="3000" max="100000" value="8000" step="1000">
+                </div>
+                <p style="font-size:12px;color:var(--text-light);margin-top:12px">*以上为估算参考，实际以银行审批为准</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== 合作伙伴 ====== -->
+<section class="partners">
+    <div class="container">
+        <p>— 战略合作金融机构 —</p>
+        <div class="partner-logos">
+            <span>中国银行</span>
+            <span>工商银行</span>
+            <span>建设银行</span>
+            <span>农业银行</span>
+            <span>招商银行</span>
+            <span>平安银行</span>
+            <span>浦发银行</span>
+            <span>中信银行</span>
+            <span>微众银行</span>
+            <span>网商银行</span>
+        </div>
+    </div>
+</section>
+
+<!-- ====== 关于我们 ====== -->
+<section id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="section-tag">About Us</div>
+                <h2>值得信赖的<br>贷款服务专家</h2>
+                <p>鼎信助贷成立于2018年，总部位于上海，是一家专注于为个人及中小微企业提供贷款咨询与撮合服务的专业助贷机构。我们不直接放贷，而是作为您的融资顾问，精准对接最优银行产品。</p>
+                <p>累计服务客户超过6,000组，放款成功率86.5%，平均审批时效1.8天。我们的使命是让每一位客户都能以最低成本、最快速度获得资金支持。</p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <div class="icon">✓</div>
+                        <div><strong>持牌合规</strong><span>正规注册，严守监管要求</span></div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="icon">✓</div>
+                        <div><strong>费用透明</strong><span>签约前明示所有费用</span></div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="icon">✓</div>
+                        <div><strong>隐私保护</strong><span>客户信息全程加密</span></div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="icon">✓</div>
+                        <div><strong>售后跟进</strong><span>放款后持续服务</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <blockquote>"助贷不是简单的信息撮合，而是用专业能力为客户创造价值。每一个融资方案背后，都是对客户需求的深度理解。"</blockquote>
+                <cite>— 鼎信助贷 · 创始团队</cite>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== 服务项目 ====== -->
+<section id="services">
+    <div class="container">
+        <div class="text-center">
+            <div class="section-tag">Our Services</div>
+            <h2 class="section-title">一站式贷款服务</h2>
+            <p class="section-desc">覆盖个人与企业各类融资需求，量身定制最优方案</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon">💳</div>
+                <h3>个人信用贷款</h3>
+                <p>无需抵押担保，凭信用即可申请。额度最高50万，最快当天放款，随借随还灵活方便。</p>
+                <div class="tags">
+                    <span>最高50万</span>
+                    <span>月利率0.35%起</span>
+                    <span>1天放款</span>
+                </div>
+                <span class="rate">★ 最受欢迎</span>
+            </div>
+            <div class="service-card">
+                <div class="icon">🏢</div>
+                <h3>企业经营贷款</h3>
+                <p>为中小微企业提供流动资金支持，额度最高1000万，支持税贷、流水贷、发票贷等多种模式。</p>
+                <div class="tags">
+                    <span>最高1000万</span>
+                    <span>纯信用可申请</span>
+                    <span>3-5天放款</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="icon">🏠</div>
+                <h3>房产抵押贷款</h3>
+                <p>自有房产抵押融资，额度高、利率低、期限长，可用于经营周转或大额消费。</p>
+                <div class="tags">
+                    <span>最高2000万</span>
+                    <span>年利率3.0%起</span>
+                    <span>最长20年</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="icon">🚗</div>
+                <h3>车辆抵押贷款</h3>
+                <p>全款车、按揭车均可抵押，不装GPS、不押车，手续简单，快速到账。</p>
+                <div class="tags">
+                    <span>估值8成</span>
+                    <span>不押车</span>
+                    <span>2小时到账</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="icon">🔄</div>
+                <h3>过桥资金/垫资</h3>
+                <p>提供短期资金周转服务，解决房产交易过程中的赎楼、解押等临时性资金需求。</p>
+                <div class="tags">
+                    <span>按日计息</span>
+                    <span>当天放款</span>
+                    <span>额度灵活</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="icon">📈</div>
+                <h3>供应链金融</h3>
+                <p>基于核心企业信用的上下游融资服务，支持应收账款质押、订单融资、存货质押等。</p>
+                <div class="tags">
+                    <span>最高5000万</span>
+                    <span>循环授信</span>
+                    <span>随借随还</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== 优势 ====== -->
+<section class="advantages" id="advantages">
+    <div class="container">
+        <div class="text-center">
+            <div class="section-tag">Why Choose Us</div>
+            <h2 class="section-title">为什么选择鼎信助贷？</h2>
+            <p class="section-desc">五大核心优势，让您贷得放心、贷得省心</p>
+        </div>
+        <div class="adv-grid">
+            <div class="adv-card">
+                <div class="icon">🏦</div>
+                <strong>50+</strong>
+                <h4>海量银行渠道</h4>
+                <p>与全国50多家银行建立直连合作，覆盖国有行、股份行、城商行及互联网银行，产品库持续更新</p>
+            </div>
+            <div class="adv-card">
+                <div class="icon">🎯</div>
+                <strong>98.6%</strong>
+                <h4>精准匹配</h4>
+                <p>智能评估系统 + 人工复核，从数百款产品中精挑细选，确保推荐方案最优、通过率最高</p>
+            </div>
+            <div class="adv-card">
+                <div class="icon">⚡</div>
+                <strong>1天</strong>
+                <h4>极速放款</h4>
+                <p>线上预审30分钟出额度，材料齐全最快1天到账，急用钱不用等</p>
+            </div>
+            <div class="adv-card">
+                <div class="icon">🛡️</div>
+                <strong>0隐藏费</strong>
+                <h4>费用透明</h4>
+                <p>签约前签署费用确认单，无任何隐性收费，贷款全程进度实时可查</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== 办理流程 ====== -->
+<section id="process">
+    <div class="container">
+        <div class="text-center">
+            <div class="section-tag">How It Works</div>
+            <h2 class="section-title">四步轻松获贷</h2>
+            <p class="section-desc">简单四步，即可获得资金支持</p>
+        </div>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="num">1</div>
+                <h4>提交需求</h4>
+                <p>填写基本信息与贷款需求，在线预审快速出额度</p>
+            </div>
+            <div class="process-step">
+                <div class="num">2</div>
+                <h4>方案匹配</h4>
+                <p>智能匹配+人工精选，推荐最优银行产品组合</p>
+            </div>
+            <div class="process-step">
+                <div class="num">3</div>
+                <h4>协助办理</h4>
+                <p>全程协助准备材料、填写申请、跟进审批进度</p>
+            </div>
+            <div class="process-step">
+                <div class="num">4</div>
+                <h4>成功放款</h4>
+                <p>银行审批通过后放款到账，贷后持续关注与服务</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== 成功案例 ====== -->
+<section id="cases" style="background:var(--bg-alt)">
+    <div class="container">
+        <div class="text-center">
+            <div class="section-tag">Success Stories</div>
+            <h2 class="section-title">真实成功案例</h2>
+            <p class="section-desc">每一个案例背后，都是一份信任与专业的双向奔赴</p>
+        </div>
+        <div class="cases-grid">
+            <div class="case-card">
+                <div class="case-body">
+                    <span class="case-tag">企业经营贷</span>
+                    <h4>张先生 · 餐饮连锁店扩张</h4>
+                    <p>经营3家餐饮店，因扩张需求资金80万。多家银行因流水不足拒贷。我们推荐税贷+信用组合方案，最终获批75万，年利率4.2%。</p>
+                    <div class="case-meta">
+                        <span>💰 获批：75万</span>
+                        <span>⚡ 用时：3天</span>
+                    </div>
+                </div>
+            </div>
+            <div class="case-card">
+                <div class="case-body">
+                    <span class="case-tag">个人信用贷</span>
+                    <h4>李女士 · 装修资金周转</h4>
+                    <p>新房装修急需20万，因自由职业收入不稳定难以获批。通过我们的方案优化，匹配特定银行产品，最终获批18万，月利率0.38%。</p>
+                    <div class="case-meta">
+                        <span>💰 获批：18万</span>
+                        <span>⚡ 用时：1天</span>
+                    </div>
+                </div>
+            </div>
+            <div class="case-card">
+                <div class="case-body">
+                    <span class="case-tag">房产抵押贷</span>
+                    <h4>王先生 · 企业扩大生产线</h4>
+                    <p>制造业企业老板，需要300万购置设备。名下房产值500万但有按揭。我们协调过桥解押+抵押同步操作，最终获批280万，年利率3.2%。</p>
+                    <div class="case-meta">
+                        <span>💰 获批：280万</span>
+                        <span>⚡ 用时：7天</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== FAQ ====== -->
+<section id="faq">
+    <div class="container">
+        <div class="text-center">
+            <div class="section-tag">FAQ</div>
+            <h2 class="section-title">常见问题</h2>
+            <p class="section-desc">您关心的问题，这里有答案</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item active">
+                <div class="faq-q">找助贷公司和自己去银行有什么区别？<span class="arrow">▼</span></div>
+                <div class="faq-a"><p>助贷公司实质是您的"贷款经纪人"。区别在于：（1）我们了解几十家银行上百款产品的准入标准和审批要点，能精准推荐最适合您的产品，而您一家家去问费时费力；（2）我们有丰富的材料准备和沟通经验，能大幅提高通过率；（3）我们还能在多家银行间进行组合方案，额度更高、利率更低；（4）对您来说完全免费——我们的服务费由银行支付。</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">贷款需要什么条件？<span class="arrow">▼</span></div>
+                <div class="faq-a"><p>不同产品条件不同。基本要求：年龄22-60周岁；有稳定的收入来源；信用记录良好（部分产品可接受轻度逾期）。企业贷还需要企业注册满1年、有持续经营流水等。建议先提交基本信息，我们免费评估后再确认符合条件的产品。</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">信用记录不好还能贷款吗？<span class="arrow">▼</span></div>
+                <div class="faq-a"><p>视具体情况而定。轻微的逾期（1-2次，金额小、时间短）大部分银行可接受；严重的逾期（连续3个月以上、呆账、代偿）会大幅影响通过率。但部分银行的产品对征信要求较灵活，或有抵押类产品可覆盖。建议联系我们先做免费征信评估。</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">助贷收费吗？费用怎么算？<span class="arrow">▼</span></div>
+                <div class="faq-a"><p>对客户来说，咨询、评估、方案匹配全程免费。只有在您确认签约后，我们会收取服务费（一般在放款金额的1%-3%），并在签约前明示确认。我们的主要收入来自银行端的佣金。在您拿到银行批款前，无需支付任何费用。如有任何机构在放款前收费，请警惕。</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">最快多久能放款？<span class="arrow">▼</span></div>
+                <div class="faq-a"><p>最快1天放款。信用类贷款（纯线上产品）材料齐全的情况下，最快当天审批、次日到账。抵押类贷款因涉及房产评估、抵押登记等流程，通常需要5-10个工作日。材料准备越充分，放款速度越快。</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">申请贷款需要准备哪些材料？<span class="arrow">▼</span></div>
+                <div class="faq-a"><p>基础材料：身份证、近6个月银行流水、工作证明/营业执照。根据贷款类型补充：信用贷—社保/公积金记录；经营贷—财务报表、经营场地证明；抵押贷—房产证/车辆登记证等。具体清单我们会在方案确认后详细列明。</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== 联系我们 ====== -->
+<section id="contact">
+    <div class="container">
+        <div class="text-center">
+            <div class="section-tag">Contact Us</div>
+            <h2 class="section-title">立即咨询</h2>
+            <p class="section-desc">免费评估，不成功不收费</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>让专业的人<br>做专业的事</h2>
+                <p>留下一份需求，我们帮您省去跑银行的麻烦。免费为您评估资质、匹配方案。</p>
+                <div class="contact-items">
+                    <div class="contact-item">
+                        <div class="icon">📍</div>
+                        <div>
+                            <h4>公司地址</h4>
+                            <p>上海市浦东新区陆家嘴环路166号未来资产大厦</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">📞</div>
+                        <div>
+                            <h4>咨询热线</h4>
+                            <p>400-888-6789</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">📱</div>
+                        <div>
+                            <h4>微信</h4>
+                            <p>dingxin-loan（或扫描下方二维码）</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">🕐</div>
+                        <div>
+                            <h4>工作时间</h4>
+                            <p>周一至周五 9:00-18:00（周六日可预约）</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>📝 填写需求，24小时内联系您</h3>
+                <form id="contactForm" onsubmit="return handleSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">您的姓名 *</label>
+                            <input type="text" id="name" name="name" required placeholder="请输入您的姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">手机号码 *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="仅用于联系，严格保密">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="loanType">贷款类型</label>
+                        <select id="loanType" name="loanType">
+                            <option value="">请选择</option>
+                            <option>个人信用贷款</option>
+                            <option>企业经营贷款</option>
+                            <option>房产抵押贷款</option>
+                            <option>车辆抵押贷款</option>
+                            <option>过桥垫资</option>
+                            <option>供应链金融</option>
+                            <option>其他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">期望额度</label>
+                        <select id="amount" name="amount">
+                            <option value="">请选择</option>
+                            <option>10万以下</option>
+                            <option>10-30万</option>
+                            <option>30-50万</option>
+                            <option>50-100万</option>
+                            <option>100-500万</option>
+                            <option>500万以上</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">补充说明</label>
+                        <textarea id="message" name="message" placeholder="可在此描述您的具体情况，如资金用途、期望放款时间等"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:17px">提交申请，免费评估</button>
+                    <p style="font-size:12px;color:var(--text-light);text-align:center;margin-top:12px">提交即表示您同意我们的隐私政策，信息仅用于贷款评估</p>
+                </form>
+                <div id="formSuccess" style="display:none;text-align:center;padding:40px 0">
+                    <div style="font-size:60px;margin-bottom:16px">✅</div>
+                    <h3 style="font-size:20px;font-weight:700;margin-bottom:8px">提交成功！</h3>
+                    <p style="color:var(--text-light)">感谢您的信任，我们将在24小时内与您联系。</p>
+                    <p style="color:var(--text-light)">您也可以直接拨打 <strong style="color:var(--primary)">400-888-6789</strong> 快速咨询。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== Footer ====== -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-icon">鼎</div>
+                    鼎信<span style="color:#fff">助贷</span>
+                </a>
+                <p>鼎信助贷 — 专业贷款服务平台。与50+银行合作，为您提供高效、透明、安全的融资服务。让融资更简单，是我们不变的使命。</p>
+            </div>
+            <div class="footer-col">
+                <h4>服务项目</h4>
+                <ul>
+                    <li><a href="#services">个人信用贷款</a></li>
+                    <li><a href="#services">企业经营贷款</a></li>
+                    <li><a href="#services">房产抵押贷款</a></li>
+                    <li><a href="#services">车辆抵押贷款</a></li>
+                    <li><a href="#services">过桥垫资</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="#about">关于我们</a></li>
+                    <li><a href="#process">办理流程</a></li>
+                    <li><a href="#cases">成功案例</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>联系我们</h4>
+                <ul>
+                    <li><a href="tel:4008886789">📞 400-888-6789</a></li>
+                    <li><a href="#">📧 service@dingxin-loan.com</a></li>
+                    <li><a href="#">📍 上海市浦东新区陆家嘴</a></li>
+                    <li><a href="#">🕐 工作日 9:00-18:00</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 鼎信助贷 版权所有 | 沪ICP备2024XXXXXX号</span>
+            <span>本网站仅为信息展示平台，不构成任何贷款承诺</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ====== 回到顶部 ====== -->
+<button class="back-top" id="backTop" aria-label="回到顶部">↑</button>
+
+<!-- ====== JavaScript ====== -->
+<script>
+// 导航栏滚动效果
+const navbar = document.getElementById('navbar');
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+    backTop.classList.toggle('visible', window.scrollY > 400);
+});
+backTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+// 移动端菜单
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+});
+// 点击链接后关闭菜单
+document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+// 贷款计算器
+const slider = document.getElementById('incomeSlider');
+const incomeLabel = document.getElementById('incomeLabel');
+const calcAmount = document.getElementById('calcAmount');
+const calcPayment = document.getElementById('calcPayment');
+
+function updateCalc() {
+    const income = parseInt(slider.value);
+    incomeLabel.textContent = income.toLocaleString() + '元';
+    const multiple = income < 10000 ? 10 : income < 30000 ? 15 : income < 50000 ? 20 : 25;
+    const amount = Math.round(income * multiple / 10000) * 10000;
+    calcAmount.textContent = (amount >= 10000 ? (amount/10000).toFixed(0) + '万' : amount.toLocaleString());
+    const months = 36;
+    const rate = 0.0045;
+    const pv = amount;
+    const payment = Math.round(pv * rate * Math.pow(1+rate, months) / (Math.pow(1+rate, months) - 1));
+    calcPayment.textContent = '≈ ' + payment.toLocaleString() + '元/月';
+}
+slider.addEventListener('input', updateCalc);
+updateCalc();
+
+// FAQ 折叠
+document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const wasActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!wasActive) item.classList.add('active');
+    });
+});
+
+// 表单提交
+function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const success = document.getElementById('formSuccess');
+    form.style.display = 'none';
+    success.style.display = 'block';
+
+    // 模拟提交 - 可替换为实际 API
+    const data = {
+        name: form.name.value,
+        phone: form.phone.value,
+        loanType: form.loanType.value,
+        amount: form.amount.value,
+        message: form.message.value
+    };
+    console.log('贷款申请:', data);
+    return false;
+}
+
+// 平滑滚动（兼容部分浏览器）
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({behavior:'smooth'});
+        }
+    });
+});
+</script>
+</body>
+</html>
