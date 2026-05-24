@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>鼎信助贷 — 专业贷款服务 | 让融资更简单</title>
-    <meta name="description" content="鼎信助贷，专业提供个人信用贷款、企业经营贷款、房产抵押贷款等一站式融资服务。与50+银行合作，最快1天放款。">
+    <title>默裕企服 — 专业企业融资服务 | 让融资更简单</title>
+    <meta name="description" content="默裕企服，专业提供个人信用贷款、企业经营贷款、房产抵押贷款等一站式融资服务。与30+银行合作，最快1天放款。">
     <meta name="keywords" content="助贷,贷款服务,信用贷款,抵押贷款,企业经营贷,融资服务">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
@@ -98,8 +98,15 @@
         /* ===== 合作伙伴 ===== */
         .partners{background:var(--bg-alt);padding:48px 0}
         .partners p{text-align:center;font-size:14px;color:var(--text-light);margin-bottom:24px;letter-spacing:1px}
-        .partner-logos{display:flex;justify-content:center;flex-wrap:wrap;gap:32px 48px;align-items:center;opacity:.6}
-        .partner-logos span{font-size:20px;font-weight:700;color:var(--text-light);padding:8px 16px;border:1px solid var(--border);border-radius:8px;background:#fff}
+        .partner-logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:16px;align-items:center}
+        .partner-logo-item{display:flex;align-items:center;justify-content:center;padding:14px 10px;border:1px solid var(--border);border-radius:10px;background:#fff;font-size:14px;font-weight:700;color:var(--text-light);transition:var(--transition);cursor:default}
+        .partner-logo-item:hover{border-color:var(--primary-light);color:var(--primary);box-shadow:0 2px 8px rgba(26,86,219,.1);transform:translateY(-2px)}
+        .partner-logo-item .bank-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-right:8px;flex-shrink:0}
+        .partner-logo-item:nth-child(1) .bank-icon,.partner-logo-item:nth-child(2) .bank-icon,.partner-logo-item:nth-child(3) .bank-icon,.partner-logo-item:nth-child(4) .bank-icon{background:rgba(220,38,38,.1);color:#dc2626}
+        .partner-logo-item:nth-child(5) .bank-icon,.partner-logo-item:nth-child(6) .bank-icon,.partner-logo-item:nth-child(7) .bank-icon{background:rgba(37,99,235,.1);color:#2563eb}
+        .partner-logo-item:nth-child(8) .bank-icon,.partner-logo-item:nth-child(9) .bank-icon,.partner-logo-item:nth-child(10) .bank-icon{background:rgba(5,150,105,.1);color:#059669}
+        .partner-logo-item:nth-child(11) .bank-icon,.partner-logo-item:nth-child(12) .bank-icon,.partner-logo-item:nth-child(13) .bank-icon{background:rgba(217,119,6,.1);color:#d97706}
+        .partner-logo-item:nth-child(14) .bank-icon,.partner-logo-item:nth-child(15) .bank-icon,.partner-logo-item:nth-child(16) .bank-icon{background:rgba(124,58,237,.1);color:#7c3aed}
 
         /* ===== 关于我们 ===== */
         .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
@@ -126,6 +133,10 @@
         .service-card:nth-child(4) .icon{background:rgba(239,68,68,.1);color:#ef4444}
         .service-card:nth-child(5) .icon{background:rgba(139,92,246,.1);color:#8b5cf6}
         .service-card:nth-child(6) .icon{background:rgba(236,72,153,.1);color:#ec4899}
+        .service-card:nth-child(7) .icon{background:rgba(14,165,233,.1);color:#0ea5e9}
+        .service-card:nth-child(8) .icon{background:rgba(168,85,247,.1);color:#a855f7}
+        .service-card:nth-child(9) .icon{background:rgba(249,115,22,.1);color:#f97316}
+        .service-card:nth-child(10) .icon{background:rgba(20,184,166,.1);color:#14b8a6}
         .service-card h3{font-size:20px;font-weight:700;margin-bottom:10px}
         .service-card p{font-size:14px;color:var(--text-light);line-height:1.7;margin-bottom:16px}
         .service-card .tags{display:flex;flex-wrap:wrap;gap:6px}
@@ -257,7 +268,7 @@
     <div class="container">
         <a href="#" class="logo">
             <div class="logo-icon">鼎</div>
-            鼎信<span>助贷</span>
+            默裕<span>企服</span>
         </a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">关于我们</a></li>
@@ -277,15 +288,15 @@
 <section class="hero" id="hero">
     <div class="container">
         <div class="hero-text">
-            <div class="hero-badge">🏦 与50+银行达成深度合作</div>
+            <div class="hero-badge">🏦 与30+银行达成深度合作</div>
             <h1>让融资<br><span class="highlight">更简单、更高效</span></h1>
-            <p>鼎信助贷 — 一站式贷款服务平台，为您匹配合适的银行产品。个人信贷、企业经营贷、抵押贷款，最快1天放款。</p>
+            <p>默裕企服 — 一站式企业融资服务平台，为您匹配合适的银行产品。个人信贷、企业经营贷、抵押贷款，最快1天放款。</p>
             <div class="hero-btns">
                 <a href="#contact" class="btn btn-primary">📞 免费咨询</a>
                 <a href="#services" class="btn btn-outline">了解服务 →</a>
             </div>
             <div class="hero-stats">
-                <div class="hero-stat"><strong>50+</strong><span>合作银行</span></div>
+                <div class="hero-stat"><strong>30+</strong><span>合作银行</span></div>
                 <div class="hero-stat"><strong>12亿+</strong><span>累计放款</span></div>
                 <div class="hero-stat"><strong>98.6%</strong><span>客户满意度</span></div>
             </div>
@@ -317,16 +328,36 @@
     <div class="container">
         <p>— 战略合作金融机构 —</p>
         <div class="partner-logos">
-            <span>中国银行</span>
-            <span>工商银行</span>
-            <span>建设银行</span>
-            <span>农业银行</span>
-            <span>招商银行</span>
-            <span>平安银行</span>
-            <span>浦发银行</span>
-            <span>中信银行</span>
-            <span>微众银行</span>
-            <span>网商银行</span>
+            <div class="partner-logo-item"><span class="bank-icon">中</span>中国银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">工</span>工商银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">建</span>建设银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">农</span>农业银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">招</span>招商银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">平安</span>平安银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">浦发</span>浦发银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">中信</span>中信银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">微众</span>微众银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">网商</span>网商银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">交通</span>交通银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">兴业</span>兴业银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">民生</span>民生银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">光大</span>光大银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">业务</span>海通银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">广发</span>广发银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">浙商</span>浙商银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">浦发</span>上海银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">凯惠</span>苏州银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">北京</span>北京银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">南京</span>南京银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">姊南</span>姊南银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">农商</span>上海农商银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">太平</span>太平洋银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">恒生</span>恒生银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">汇丰</span>汇丰银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">卫来</span>微贷银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">脾信</span>公安银行</div>
+            <div class="partner-logo-item"><span class="bank-icon">贷款</span>浦发信贷</div>
+            <div class="partner-logo-item"><span class="bank-icon">融资</span>网商融资</div>
         </div>
     </div>
 </section>
@@ -338,7 +369,7 @@
             <div class="about-text">
                 <div class="section-tag">About Us</div>
                 <h2>值得信赖的<br>贷款服务专家</h2>
-                <p>鼎信助贷成立于2018年，总部位于上海，是一家专注于为个人及中小微企业提供贷款咨询与撮合服务的专业助贷机构。我们不直接放贷，而是作为您的融资顾问，精准对接最优银行产品。</p>
+                <p>默裕企服成立于2018年，总部位于上海，是一家专注于为个人及中小微企业提供企业融资咨询与撮合服务的专业机构。我们不直接放贷，而是作为您的融资顾问，精准对接最优银行产品。</p>
                 <p>累计服务客户超过6,000组，放款成功率86.5%，平均审批时效1.8天。我们的使命是让每一位客户都能以最低成本、最快速度获得资金支持。</p>
                 <div class="about-features">
                     <div class="about-feature">
@@ -361,7 +392,7 @@
             </div>
             <div class="about-image">
                 <blockquote>"助贷不是简单的信息撮合，而是用专业能力为客户创造价值。每一个融资方案背后，都是对客户需求的深度理解。"</blockquote>
-                <cite>— 鼎信助贷 · 创始团队</cite>
+                <cite>— 默裕企服 · 创始团队</cite>
             </div>
         </div>
     </div>
@@ -372,7 +403,7 @@
     <div class="container">
         <div class="text-center">
             <div class="section-tag">Our Services</div>
-            <h2 class="section-title">一站式贷款服务</h2>
+            <h2 class="section-title">十大贷款服务</h2>
             <p class="section-desc">覆盖个人与企业各类融资需求，量身定制最优方案</p>
         </div>
         <div class="services-grid">
@@ -437,6 +468,46 @@
                     <span>随借随还</span>
                 </div>
             </div>
+            <div class="service-card">
+                <div class="icon">🎓</div>
+                <h3>创业担保贷款</h3>
+                <p>政府贴息支持的创业贷款，为初创企业和小微创业者提供低成本启动资金，最高可享财政全额贴息。</p>
+                <div class="tags">
+                    <span>最高50万</span>
+                    <span>财政贴息</span>
+                    <span>免抵押</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="icon">🌾</div>
+                <h3>农业融资贷款</h3>
+                <p>面向农业合作社、家庭农场、种植养殖大户的专项融资服务，支持农地经营权抵押、农业补贴质押等创新模式。</p>
+                <div class="tags">
+                    <span>最高500万</span>
+                    <span>农地抵押</span>
+                    <span>季节性还款</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="icon">💎</div>
+                <h3>知识产权质押贷</h3>
+                <p>以专利、商标、著作权等知识产权作为质押物的创新型融资产品，助力科技型企业解决轻资产融资难题。</p>
+                <div class="tags">
+                    <span>最高1000万</span>
+                    <span>评估贴息</span>
+                    <span>科技专属</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="icon">🌐</div>
+                <h3>跨境电商贷</h3>
+                <p>针对亚马逊、Shopee、Lazada等跨境电商平台的卖家专属融资，基于店铺流水和评价数据授信，随借随还。</p>
+                <div class="tags">
+                    <span>最高300万</span>
+                    <span>平台数据授信</span>
+                    <span>美元还款</span>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -446,15 +517,15 @@
     <div class="container">
         <div class="text-center">
             <div class="section-tag">Why Choose Us</div>
-            <h2 class="section-title">为什么选择鼎信助贷？</h2>
+            <h2 class="section-title">为什么选择默裕企服？</h2>
             <p class="section-desc">五大核心优势，让您贷得放心、贷得省心</p>
         </div>
         <div class="adv-grid">
             <div class="adv-card">
                 <div class="icon">🏦</div>
-                <strong>50+</strong>
+                <strong>30+</strong>
                 <h4>海量银行渠道</h4>
-                <p>与全国50多家银行建立直连合作，覆盖国有行、股份行、城商行及互联网银行，产品库持续更新</p>
+                <p>与全国30多家银行建立直连合作，覆盖国有行、股份行、城商行及互联网银行，产品库持续更新</p>
             </div>
             <div class="adv-card">
                 <div class="icon">🎯</div>
@@ -618,7 +689,7 @@
                         <div class="icon">📞</div>
                         <div>
                             <h4>咨询热线</h4>
-                            <p>400-888-6789</p>
+                            <p>13395277076</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -686,7 +757,7 @@
                     <div style="font-size:60px;margin-bottom:16px">✅</div>
                     <h3 style="font-size:20px;font-weight:700;margin-bottom:8px">提交成功！</h3>
                     <p style="color:var(--text-light)">感谢您的信任，我们将在24小时内与您联系。</p>
-                    <p style="color:var(--text-light)">您也可以直接拨打 <strong style="color:var(--primary)">400-888-6789</strong> 快速咨询。</p>
+                    <p style="color:var(--text-light)">您也可以直接拨打 <strong style="color:var(--primary)">13395277076</strong> 快速咨询。</p>
                 </div>
             </div>
         </div>
@@ -700,9 +771,9 @@
             <div class="footer-brand">
                 <a href="#" class="logo">
                     <div class="logo-icon">鼎</div>
-                    鼎信<span style="color:#fff">助贷</span>
+                    默裕<span style="color:#fff">企服</span>
                 </a>
-                <p>鼎信助贷 — 专业贷款服务平台。与50+银行合作，为您提供高效、透明、安全的融资服务。让融资更简单，是我们不变的使命。</p>
+                <p>默裕企服 — 专业企业融资服务平台。与30+银行合作，为您提供高效、透明、安全的融资服务。让融资更简单，是我们不变的使命。</p>
             </div>
             <div class="footer-col">
                 <h4>服务项目</h4>
@@ -727,15 +798,15 @@
             <div class="footer-col">
                 <h4>联系我们</h4>
                 <ul>
-                    <li><a href="tel:4008886789">📞 400-888-6789</a></li>
-                    <li><a href="#">📧 service@dingxin-loan.com</a></li>
+                    <li><a href="tel:13395277076">📞 13395277076</a></li>
+                    <li><a href="#">📧 1722969492@qq.com</a></li>
                     <li><a href="#">📍 上海市浦东新区陆家嘴</a></li>
                     <li><a href="#">🕐 工作日 9:00-18:00</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <span>&copy; 2026 鼎信助贷 版权所有 | 沪ICP备2024XXXXXX号</span>
+            <span>&copy; 2026 默裕企服 版权所有 | 沪ICP备2024XXXXXX号</span>
             <span>本网站仅为信息展示平台，不构成任何贷款承诺</span>
         </div>
     </div>
