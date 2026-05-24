@@ -892,30 +892,19 @@ function handleSubmit(e) {
     submitBtn.disabled = true;
     submitBtn.textContent = '提交中...';
 
-    const apiUrl = localStorage.getItem('submitApi') || 'https://new-toys-itch.loca.lt/submit';
+    // 保存到浏览器本地（备用）
+    const leads = JSON.parse(localStorage.getItem('pendingLeads') || '[]');
+    leads.push({...data, time: new Date().toISOString()});
+    localStorage.setItem('pendingLeads', JSON.stringify(leads));
 
-    fetch(apiUrl, {
+    // 通知本地服务（电脑开着时才会生效）
+    fetch('http://localhost:3456/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-    })
-    .then(r => r.json())
-    .then(res => {
-        if (res.success) {
-            showSuccess(form);
-        } else {
-            alert('提交失败: ' + (res.message || '请稍后重试'));
-            submitBtn.disabled = false;
-            submitBtn.textContent = '提交申请，免费评估';
-        }
-    })
-    .catch(() => {
-        // 本地服务不可用，保存到 localStorage
-        const leads = JSON.parse(localStorage.getItem('pendingLeads') || '[]');
-        leads.push({...data, time: new Date().toISOString()});
-        localStorage.setItem('pendingLeads', JSON.stringify(leads));
-        showSuccess(form);
-    });
+    }).catch(() => {});
+
+    showSuccess(form);
     return false;
 }
 function showSuccess(form) {
