@@ -872,11 +872,7 @@ document.querySelectorAll('.faq-q').forEach(q => {
 function handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
-    const success = document.getElementById('formSuccess');
-    form.style.display = 'none';
-    success.style.display = 'block';
-
-    // 模拟提交 - 可替换为实际 API
+    const submitBtn = form.querySelector('button[type=submit]');
     const data = {
         name: form.name.value,
         phone: form.phone.value,
@@ -884,8 +880,40 @@ function handleSubmit(e) {
         amount: form.amount.value,
         message: form.message.value
     };
-    console.log('贷款申请:', data);
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = '提交中...';
+
+    const apiUrl = localStorage.getItem('submitApi') || 'https://moyu-qifu.loca.lt/submit';
+
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(r => r.json())
+    .then(res => {
+        if (res.success) {
+            showSuccess(form);
+        } else {
+            alert('提交失败: ' + (res.message || '请稍后重试'));
+            submitBtn.disabled = false;
+            submitBtn.textContent = '提交申请，免费评估';
+        }
+    })
+    .catch(() => {
+        // 本地服务不可用，保存到 localStorage
+        const leads = JSON.parse(localStorage.getItem('pendingLeads') || '[]');
+        leads.push({...data, time: new Date().toISOString()});
+        localStorage.setItem('pendingLeads', JSON.stringify(leads));
+        showSuccess(form);
+    });
     return false;
+}
+function showSuccess(form) {
+    const success = document.getElementById('formSuccess');
+    form.style.display = 'none';
+    success.style.display = 'block';
 }
 
 // 平滑滚动（兼容部分浏览器）
