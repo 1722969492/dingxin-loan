@@ -1,17 +1,17 @@
 /**
  * 默裕企服 - 表单接收服务
- * 接收网站表单提交，保存到CSV，并通过OpenClaw推送微信通知
+ * 接收网站表单提交 → 保存CSV → 创建 GitHub Issue 通知
  */
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { URL } = require('url');
+const { execSync } = require('child_process');
 
 const PORT = 3456;
 const CSV_FILE = path.join(__dirname, 'leads.csv');
 const LOG_FILE = path.join(__dirname, 'server.log');
 
-// 确保CSV文件存在且含表头
+// 确保CSV文件存在
 if (!fs.existsSync(CSV_FILE)) {
     fs.writeFileSync(CSV_FILE, '\uFEFF时间,姓名,手机,贷款类型,期望额度,补充说明\n', 'utf8');
 }
@@ -20,42 +20,51 @@ function log(msg) {
     const time = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
     const line = `[${time}] ${msg}`;
     console.log(line);
-    fs.appendFileSync(LOG_FILE, line + '\n', 'utf8');
+    try { fs.appendFileSync(LOG_FILE, line + '\n', 'utf8'); } catch(e) {}
 }
 
-// 发送微信通知 (通过OpenClaw本地API)
-async function notifyWeChat(data) {
+// 创建 GitHub Issue 通知（发送到邮箱）
+function createGithubIssue(data) {
+    const title = `[新客户] ${data.name} - ${data.phone}`;
+    const body = `## 📩 新贷款客户咨询
+
+| 项目 | 内容 |
+|------|------|
+| 👤 **姓名** | ${data.name} |
+| 📱 **电话** | ${data.phone} |
+| 🏷️ **类型** | ${data.loanType || '未选择'} |
+| 💰 **额度** | ${data.amount || '未选择'} |
+| 📝 **备注** | ${data.message || '无'} |
+| ⏰ **时间** | ${new Date().toLocaleString('zh-CN')} |
+
+> 该 Issue 由自动提交系统创建，回复将发送到您的 GitHub 绑定邮箱。
+`;
+
     try {
-        const postData = JSON.stringify({
-            message: `📩 新贷款咨询\n━━━━━━━━━━\n👤 姓名: ${data.name}\n📱 电话: ${data.phone}\n🏷️ 类型: ${data.loanType || '未选择'}\n💰 额度: ${data.amount || '未选择'}\n📝 备注: ${data.message || '无'}\n━━━━━━━━━━\n⏰ ${new Date().toLocaleString('zh-CN')}`
-        });
-
-        const options = {
-            hostname: '127.0.0.1',
-            port: 18789,
-            path: '/api/sessions/current/send',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(postData)
-            }
-        };
-
-        return new Promise((resolve) => {
-            const req = http.request(options, (res) => {
-                let body = '';
-                res.on('data', chunk => body += chunk);
-                res.on('end', () => resolve(body));
-            });
-            req.on('error', (e) => {
-                log(`微信推送失败: ${e.message}`);
-                resolve(null);
-            });
-            req.write(postData);
-            req.end();
-        });
-    } catch (e) {
-        log(`微信通知异常: ${e.message}`);
+        // 临时保存 body 到文件（避免命令行编码问题）
+        const tmpFile = path.join(__dirname, '.tmp_issue_body.md');
+        // 检测是否为 Windows，如果是则用 GBK 编码写入
+        const isWin = process.platform === 'win32';
+        
+        let bodyContent = body;
+        if (isWin) {
+            // 用 GBK 编码写入
+            const iconv = Buffer.from(body, 'utf8');
+            fs.writeFileSync(tmpFile, iconv);
+        } else {
+            fs.writeFileSync(tmpFile, body, 'utf8');
+        }
+        
+        const cmd = `gh issue create --repo 1722969492/dingxin-loan --title "${title.replace(/"/g, '\\"')}" --body-file "${tmpFile}"`;
+        const output = execSync(cmd, { encoding: 'utf8', timeout: 15000 });
+        log(`GitHub Issue 已创建: ${output.trim()}`);
+        
+        // 清理临时文件
+        fs.unlinkSync(tmpFile);
+        return true;
+    } catch (err) {
+        log(`GitHub Issue 创建失败: ${err.message}`);
+        return false;
     }
 }
 
@@ -64,12 +73,10 @@ function saveToCSV(data) {
     const time = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
     const line = `${time},${data.name},${data.phone},${data.loanType || ''},${data.amount || ''},${(data.message || '').replace(/,/g, '，')}\n`;
     fs.appendFileSync(CSV_FILE, line, 'utf8');
-    log(`新线索已保存: ${data.name} / ${data.phone}`);
 }
 
 // HTTP服务器
 const server = http.createServer(async (req, res) => {
-    // CORS 头
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -83,22 +90,20 @@ const server = http.createServer(async (req, res) => {
     if (req.method === 'POST' && req.url === '/submit') {
         let body = '';
         req.on('data', chunk => body += chunk);
-        req.on('end', async () => {
+        req.on('end', () => {
             try {
                 const data = JSON.parse(body);
-
-                // 验证必填字段
                 if (!data.name || !data.phone) {
                     res.writeHead(400, { 'Content-Type': 'application/json' });
                     res.end(JSON.stringify({ success: false, message: '姓名和手机号必填' }));
                     return;
                 }
 
-                // 保存CSV
                 saveToCSV(data);
-                
-                // 推送微信通知 (异步，不阻塞响应)
-                notifyWeChat(data);
+                log(`新线索: ${data.name} / ${data.phone}`);
+
+                // 创建 GitHub Issue 通知
+                createGithubIssue(data);
 
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ success: true, message: '提交成功' }));
@@ -114,7 +119,7 @@ const server = http.createServer(async (req, res) => {
     // 健康检查
     if (req.url === '/health') {
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ status: 'ok', time: new Date().toISOString() }));
+        res.end(JSON.stringify({ status: 'ok' }));
         return;
     }
 
@@ -131,9 +136,10 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-    log(`━━━━━━━━━━━━━━━━━━━━━━━━━━`);
-    log(`📋 默裕企服 - 表单接收服务`);
-    log(`📍 http://localhost:${PORT}`);
-    log(`📁 线索保存: ${CSV_FILE}`);
-    log(`━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+    log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+    log(`默裕企服 - 表单接收服务`);
+    log(`http://localhost:${PORT}`);
+    log(`CSV: ${CSV_FILE}`);
+    log(`通知方式: GitHub Issue → QQ邮箱`);
+    log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
 });
