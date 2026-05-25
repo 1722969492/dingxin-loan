@@ -97,20 +97,13 @@
 
         /* ===== 合作伙伴 ===== */
         .partners{background:var(--bg-alt);padding:48px 0}
-        .partners p{text-align:center;font-size:14px;color:var(--text-light);margin-bottom:24px;letter-spacing:1px}
-        .partner-logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:16px;align-items:center}
-        .partner-logo-item{display:flex;align-items:center;justify-content:center;padding:14px 10px;border:1px solid var(--border);border-radius:10px;background:#fff;font-size:14px;font-weight:700;color:var(--text-light);transition:var(--transition);cursor:default}
-        .partner-logo-item:hover{border-color:var(--primary-light);color:var(--primary);box-shadow:0 2px 8px rgba(26,86,219,.1);transform:translateY(-2px)}
-        .partner-logo-item .bank-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-right:8px;flex-shrink:0}
-        .partner-logo-item:nth-child(1) .bank-icon,.partner-logo-item:nth-child(2) .bank-icon,.partner-logo-item:nth-child(3) .bank-icon,.partner-logo-item:nth-child(4) .bank-icon{background:rgba(220,38,38,.1);color:#dc2626}
-        .partner-logo-item:nth-child(5) .bank-icon,.partner-logo-item:nth-child(6) .bank-icon,.partner-logo-item:nth-child(7) .bank-icon{background:rgba(37,99,235,.1);color:#2563eb}
-        .partner-logo-item:nth-child(8) .bank-icon,.partner-logo-item:nth-child(9) .bank-icon,.partner-logo-item:nth-child(10) .bank-icon{background:rgba(5,150,105,.1);color:#059669}
-        .partner-logo-item:nth-child(11) .bank-icon,.partner-logo-item:nth-child(12) .bank-icon,.partner-logo-item:nth-child(13) .bank-icon{background:rgba(217,119,6,.1);color:#d97706}
-        .partner-logo-item:nth-child(14) .bank-icon,.partner-logo-item:nth-child(15) .bank-icon,.partner-logo-item:nth-child(16) .bank-icon{background:rgba(124,58,237,.1);color:#7c3aed}
-        .partner-logo-item:nth-child(17) .bank-icon,.partner-logo-item:nth-child(18) .bank-icon,.partner-logo-item:nth-child(19) .bank-icon,.partner-logo-item:nth-child(20) .bank-icon{background:rgba(14,165,233,.1);color:#0ea5e9}
-        .partner-logo-item:nth-child(21) .bank-icon,.partner-logo-item:nth-child(22) .bank-icon,.partner-logo-item:nth-child(23) .bank-icon,.partner-logo-item:nth-child(24) .bank-icon{background:rgba(249,115,22,.1);color:#f97316}
-        .partner-logo-item:nth-child(25) .bank-icon,.partner-logo-item:nth-child(26) .bank-icon,.partner-logo-item:nth-child(27) .bank-icon,.partner-logo-item:nth-child(28) .bank-icon{background:rgba(168,85,247,.1);color:#a855f7}
-        .partner-logo-item:nth-child(29) .bank-icon,.partner-logo-item:nth-child(30) .bank-icon{background:rgba(236,72,153,.1);color:#ec4899}
+        .partners .section-sub{text-align:center;font-size:13px;color:var(--text-light);margin-bottom:8px;letter-spacing:3px;text-transform:uppercase}
+        .partners .section-sub strong{color:var(--primary);font-size:15px;letter-spacing:1px}
+        .partner-logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+        .partner-logo-item{display:flex;align-items:center;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:#fff;font-size:13px;font-weight:600;color:var(--text);transition:var(--transition);cursor:default;gap:10px}
+        .partner-logo-item:hover{border-color:var(--primary-light);box-shadow:0 3px 12px rgba(26,86,219,.1);transform:translateY(-2px)}
+        .partner-logo-item .bank-badge{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;letter-spacing:-0.5px;flex-shrink:0;color:#fff}
+        .partner-logo-item .bank-name{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap}
 
         /* ===== 关于我们 ===== */
         .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
@@ -332,38 +325,41 @@
 <!-- ====== 合作伙伴 ====== -->
 <section class="partners">
     <div class="container">
-        <p>— 战略合作金融机构 —</p>
+        <div style="text-align:center;margin-bottom:24px;">
+            <div class="section-sub">— <strong>战略合作金融机构</strong> —</div>
+            <p style="font-size:14px;color:var(--text-light);">与全国30+家银行建立深度合作关系，为客户匹配最优贷款方案</p>
+        </div>
         <div class="partner-logos">
-            <div class="partner-logo-item"><span class="bank-icon">中</span>中国银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">工</span>工商银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">建</span>建设银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">农</span>农业银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">招</span>招商银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">平安</span>平安银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">浦发</span>浦发银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">中信</span>中信银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">微众</span>微众银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">网商</span>网商银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">交通</span>交通银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">兴业</span>兴业银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">民生</span>民生银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">光大</span>光大银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">广发</span>广发银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">浙商</span>浙商银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">华夏</span>华夏银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">邮储</span>邮储银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">渤海</span>渤海银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">恒丰</span>恒丰银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">北京</span>北京银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">上海</span>上海银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">南京</span>南京银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">宁波</span>宁波银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">杭州</span>杭州银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">苏州</span>苏州银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">沪农</span>上海农商银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">恒生</span>恒生银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">汇丰</span>汇丰银行</div>
-            <div class="partner-logo-item"><span class="bank-icon">渣打</span>渣打银行</div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#c8102e;">BOC</span><span class="bank-name">中国银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#c8102e;">ICBC</span><span class="bank-name">工商银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#003b6f;">CCB</span><span class="bank-name">建设银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#006837;">ABC</span><span class="bank-name">农业银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#c8102e;">CMB</span><span class="bank-name">招商银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#f68b1e;">PAB</span><span class="bank-name">平安银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#004098;">SPDB</span><span class="bank-name">浦发银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#c8102e;">CITIC</span><span class="bank-name">中信银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#4a0080;">WeBank</span><span class="bank-name">微众银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#f37021;">MyBank</span><span class="bank-name">网商银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#003d7a;">BOCM</span><span class="bank-name">交通银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#003e7e;">CIB</span><span class="bank-name">兴业银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#00693e;">CMBC</span><span class="bank-name">民生银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#7b1fa2;">CEB</span><span class="bank-name">光大银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#c8102e;">CGB</span><span class="bank-name">广发银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#c8102e;">CZB</span><span class="bank-name">浙商银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#c8102e;">HXB</span><span class="bank-name">华夏银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#00693e;">PSBC</span><span class="bank-name">邮储银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#004098;">BHB</span><span class="bank-name">渤海银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#6a1b9a;">HFB</span><span class="bank-name">恒丰银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#c8102e;">BOB</span><span class="bank-name">北京银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#003d7a;">BOS</span><span class="bank-name">上海银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#6a1b9a;">BON</span><span class="bank-name">南京银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#003d7a;">NBCB</span><span class="bank-name">宁波银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#c8102e;">HZB</span><span class="bank-name">杭州银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#004098;">BOSZ</span><span class="bank-name">苏州银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#00693e;">SHRCB</span><span class="bank-name">上海农商银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#00693e;">HSB</span><span class="bank-name">恒生银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#c8102e;">HSBC</span><span class="bank-name">汇丰银行</span></div>
+            <div class="partner-logo-item"><span class="bank-badge" style="background:#003d7a;">SC</span><span class="bank-name">渣打银行</span></div>
         </div>
     </div>
 </section>
