@@ -4,13 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>默裕企服 — 专业企业融资服务 | 让融资更简单</title>
-<meta name="description" content="默裕企服，专业提供企业经营贷款、个人信用贷款、房产抵押贷款等一站式融资服务。与30+银行合作，最快1天放款。">
-<meta name="keywords" content="助贷,贷款服务,信用贷款,抵押贷款,企业经营贷,融资服务">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta name="description" content="默裕企服，专业提供企业经营贷款、个人信用贷款等一站式融资服务。与30+银行合作，最快1天放款。">
+<link rel="icon" href="favicon.ico">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;color:#333;background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;color:#333;background:#fff;line-height:1.6}
 a{color:#2a66e7;text-decoration:none;transition:color .3s}
 a:hover{color:#538cf5}
 img{max-width:100%}
@@ -21,8 +20,8 @@ section{padding:64px 0}
 .section-desc{font-size:15px;color:#666;max-width:600px;margin:0 auto 40px;text-align:center}
 .text-center{text-align:center}
 
-/* ===== 导航 ===== */
-.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:#fff;border-bottom:1px solid #e8e8e8;transition:.3s}
+/* Nav */
+.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:#fff;border-bottom:1px solid #e8e8e8}
 .navbar .container{display:flex;align-items:center;justify-content:space-between;height:64px}
 .logo{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:700;color:#333}
 .logo-icon{width:34px;height:34px;background:linear-gradient(135deg,#2a66e7,#538cf5);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:16px}
@@ -32,16 +31,16 @@ section{padding:64px 0}
 .nav-links a:hover{color:#333}
 .nav-links a:hover::after{width:100%}
 .nav-links a.active{color:#2a66e7;font-weight:600}
-.nav-cta{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;background:#2a66e7;color:#fff!important;border-radius:4px;font-size:13px;font-weight:600!important}
+.nav-cta{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;background:#2a66e7;color:#fff!important;border-radius:4px;font-size:13px;font-weight:600!important;cursor:pointer}
 .nav-cta::after{display:none!important}
 .nav-cta:hover{background:#538cf5;color:#fff!important}
 
-/* ===== Hero ===== */
-.hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,#f5f7fa 0%,#eef1f8 100%);position:relative;overflow:hidden;padding-top:64px}
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,#f5f7fa 0%,#eef1f8 100%);padding-top:64px}
 .hero .container{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(42,102,231,.08);color:#2a66e7;padding:4px 14px;border-radius:4px;font-size:12px;font-weight:600;margin-bottom:16px}
 .hero h1{font-size:40px;font-weight:700;line-height:1.2;margin-bottom:16px;color:#333}
-.hero h1 .highlight{background:linear-gradient(135deg,#2a66e7,#538cf5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 .highlight{background:linear-gradient(135deg,#2a66e7,#538cf5);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero p{font-size:16px;color:#666;line-height:1.8;margin-bottom:28px;max-width:480px}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:12px 28px;border-radius:4px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .3s}
@@ -54,20 +53,25 @@ section{padding:64px 0}
 .hero-stats{display:flex;gap:36px;margin-top:32px;padding-top:24px;border-top:1px solid #e0e0e0}
 .hero-stat strong{font-size:28px;font-weight:700;display:block;color:#2a66e7}
 .hero-stat span{font-size:13px;color:#999}
-.hero-visual{display:flex;align-items:center;justify-content:center}
-.hero-card{background:#fff;border-radius:8px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,.08);width:100%;max-width:480px}
+
+/* Hero calculator */
+.hero-card{background:#fff;border-radius:8px;padding:28px;box-shadow:0 4px 20px rgba(0,0,0,.08);max-width:480px}
 .hero-card h3{font-size:16px;font-weight:700;margin-bottom:16px;color:#333}
 .hero-card .calc-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:14px;color:#666}
-.hero-card .calc-row:last-child{border:none;font-weight:700;color:#2a66e7}
+.hero-card .calc-row:last-child{border:none}
+.hero-card .slider-group{margin-bottom:14px}
+.hero-card .slider-group label{font-size:13px;color:#666;display:flex;justify-content:space-between;margin-bottom:6px}
+.hero-card .slider-group label span{color:#2a66e7;font-weight:700}
+.hero-card .slider-group input[type=range]{width:100%;height:5px;-webkit-appearance:none;background:#e0e0e0;border-radius:3px;outline:none}
+.hero-card .slider-group input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#2a66e7;cursor:pointer;box-shadow:0 2px 6px rgba(42,102,231,.3)}
+.hero-card .result-box{margin-top:16px;padding:14px;background:rgba(42,102,231,.04);border-radius:6px;text-align:center}
+.hero-card .result-box .amount{font-size:28px;font-weight:700;color:#2a66e7}
+.hero-card .result-box .label{font-size:12px;color:#999;margin-top:4px}
 
-/* ===== 产品分类 ===== */
+/* Products */
 #services{background:#fff}
-.category-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:32px;flex-wrap:wrap}
-.category-tab{padding:8px 20px;border:1px solid #e0e0e0;border-radius:4px;font-size:13px;color:#666;cursor:pointer;transition:.3s;background:#fff}
-.category-tab:hover{border-color:#2a66e7;color:#2a66e7}
-.category-tab.active{background:#2a66e7;color:#fff;border-color:#2a66e7}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.service-card{background:#fff;border:1px solid #eee;border-radius:8px;padding:20px;transition:all .3s;cursor:default}
+.service-card{background:#fff;border:1px solid #eee;border-radius:8px;padding:20px;transition:all .3s;cursor:pointer;position:relative}
 .service-card:hover{border-color:#2a66e7;box-shadow:0 4px 16px rgba(42,102,231,.08);transform:translateY(-2px)}
 .service-card .icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px}
 .service-card .cat-tag{display:inline-block;font-size:11px;padding:1px 8px;background:rgba(42,102,231,.06);color:#2a66e7;border-radius:3px;margin-bottom:8px;font-weight:500}
@@ -76,26 +80,27 @@ section{padding:64px 0}
 .service-card .tags{display:flex;flex-wrap:wrap;gap:4px}
 .service-card .tags span{font-size:11px;padding:2px 8px;background:#f5f5f5;border-radius:3px;color:#999}
 .service-card .rate{display:block;margin-top:8px;font-size:12px;color:#f0b017;font-weight:600}
+.service-card .view-detail{display:inline-block;margin-top:6px;font-size:12px;color:#2a66e7;font-weight:600}
+.service-card .view-detail:hover{text-decoration:underline}
 
-/* ===== 合作伙伴 ===== */
+/* Partners */
 .partners{background:#f5f7fa;padding:48px 0}
-.partners .partner-title{text-align:center;font-size:14px;color:#999;margin-bottom:20px;letter-spacing:2px}
 .partner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
 .partner-item{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #e8e8e8;border-radius:6px;background:#fff;font-size:12px;font-weight:600;color:#333;transition:.3s}
 .partner-item:hover{border-color:#2a66e7;box-shadow:0 2px 8px rgba(42,102,231,.08);transform:translateY(-2px)}
 .partner-item .badge{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;flex-shrink:0}
 
-/* ===== 为什么选择 ===== */
+/* Advantages */
 .advantages{background:#fff;padding:64px 0}
 .adv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .adv-card{text-align:center;padding:24px 16px;border:1px solid #eee;border-radius:8px;transition:.3s}
-.adv-card:hover{border-color:#2a66e7;box-shadow:0 4px 16px rgba(42,102,231,.06)}
+.adv-card:hover{border-color:#2a66e7}
 .adv-card .icon{font-size:32px;margin-bottom:12px}
 .adv-card h4{font-size:15px;font-weight:700;color:#333;margin-bottom:6px}
 .adv-card p{font-size:13px;color:#666;line-height:1.5}
 .adv-card strong{display:block;font-size:24px;color:#2a66e7;margin-bottom:4px}
 
-/* ===== 流程 ===== */
+/* Process */
 .process{background:#f5f7fa;padding:64px 0}
 .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative}
 .process-steps::before{content:"";position:absolute;top:36px;left:calc(12.5% + 10px);width:calc(75% - 20px);height:2px;background:linear-gradient(90deg,#2a66e7,#538cf5)}
@@ -104,13 +109,12 @@ section{padding:64px 0}
 .step h4{font-size:15px;font-weight:700;margin-bottom:6px}
 .step p{font-size:13px;color:#666}
 
-/* ===== 关于 ===== */
+/* About */
 .about{background:#fff;padding:64px 0}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 .about-text h2{font-size:28px;font-weight:700;line-height:1.3;margin-bottom:16px}
 .about-text p{color:#666;font-size:14px;line-height:1.8;margin-bottom:12px}
-.about-features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
-.about-feat{display:flex;gap:10px;align-items:start;font-size:13px}
+.about-feat{display:flex;gap:10px;align-items:start;font-size:13px;margin-bottom:10px}
 .about-feat .icon{width:20px;height:20px;background:rgba(42,102,231,.08);border-radius:4px;display:flex;align-items:center;justify-content:center;color:#2a66e7;font-size:12px;flex-shrink:0}
 .about-feat strong{display:block;font-size:14px;margin-bottom:2px}
 .about-feat span{color:#999;font-size:12px}
@@ -118,18 +122,17 @@ section{padding:64px 0}
 .about-quote blockquote{font-size:18px;font-weight:600;line-height:1.6;margin-bottom:16px;font-style:italic}
 .about-quote cite{font-style:normal;font-size:13px;opacity:.8}
 
-/* ===== 案例 ===== */
+/* Cases */
 .cases{background:#f5f7fa;padding:64px 0}
 .cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.case-card{background:#fff;border:1px solid #eee;border-radius:8px;overflow:hidden;transition:.3s}
+.case-card{background:#fff;border:1px solid #eee;border-radius:8px;padding:20px;transition:.3s}
 .case-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);transform:translateY(-2px)}
-.case-body{padding:20px}
-.case-body .tag{display:inline-block;font-size:11px;padding:2px 10px;background:rgba(240,176,23,.1);color:#f0b017;border-radius:3px;margin-bottom:8px;font-weight:600}
-.case-body h4{font-size:14px;font-weight:700;margin-bottom:8px;color:#333}
-.case-body p{font-size:13px;color:#666;line-height:1.6;margin-bottom:12px}
-.case-body .result{display:flex;gap:16px;padding-top:10px;border-top:1px solid #f0f0f0;font-size:13px;font-weight:600;color:#2a66e7}
+.case-card .tag{display:inline-block;font-size:11px;padding:2px 10px;background:rgba(240,176,23,.1);color:#f0b017;border-radius:3px;margin-bottom:8px;font-weight:600}
+.case-card h4{font-size:14px;font-weight:700;margin-bottom:8px;color:#333}
+.case-card p{font-size:13px;color:#666;line-height:1.6;margin-bottom:12px}
+.case-card .result{display:flex;gap:16px;padding-top:10px;border-top:1px solid #f0f0f0;font-size:13px;font-weight:600;color:#2a66e7}
 
-/* ===== FAQ ===== */
+/* FAQ */
 .faq{padding:64px 0;background:#fff}
 .faq-list{max-width:800px;margin:0 auto}
 .faq-item{border:1px solid #eee;border-radius:6px;margin-bottom:10px;overflow:hidden}
@@ -140,28 +143,37 @@ section{padding:64px 0}
 .faq-a{padding:0 18px 14px;font-size:13px;color:#666;line-height:1.8;display:none}
 .faq-a.show{display:block}
 
-/* ===== 联系 ===== */
+/* Contact */
 #contact{background:linear-gradient(135deg,#2a66e7,#1a4d9e);color:#fff;padding:64px 0}
 #contact .section-title{color:#fff;margin-bottom:8px}
 #contact .section-desc{color:rgba(255,255,255,.7);margin:0 auto 36px}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-.contact-form{display:flex;flex-direction:column;gap:12px}
-.contact-form input,.contact-form select,.contact-form textarea{padding:12px 14px;border:1px solid rgba(255,255,255,.2);border-radius:4px;font-size:14px;background:rgba(255,255,255,.08);color:#fff;outline:none;font-family:inherit}
-.contact-form input::placeholder,.contact-form select,.contact-form textarea::placeholder{color:rgba(255,255,255,.5)}
-.contact-form select option{color:#333}
-.contact-form textarea{min-height:100px;resize:vertical}
-.contact-form .submit-btn{padding:12px;background:#f0b017;color:#fff;border:none;border-radius:4px;font-size:15px;font-weight:700;cursor:pointer;transition:.3s}
-.contact-form .submit-btn:hover{background:#e5a515}
-.contact-info{padding:8px 0}
 .contact-info h3{font-size:20px;font-weight:700;margin-bottom:8px}
 .contact-info p{font-size:14px;opacity:.8;line-height:1.8;margin-bottom:16px}
 .contact-info .info-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:14px}
 .contact-info .info-item:last-child{border:none}
 
-/* ===== 底部 ===== */
+/* Modal */
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+.modal-box{background:#fff;border-radius:10px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.2);position:relative}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:#f0f0f0;border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#666}
+.modal-close:hover{background:#e0e0e0}
+.modal-box .m-cat{display:inline-block;font-size:12px;padding:2px 10px;background:rgba(42,102,231,.08);color:#2a66e7;border-radius:4px;margin-bottom:10px;font-weight:600}
+.modal-box h2{font-size:22px;font-weight:700;color:#333;margin-bottom:12px}
+.modal-box .m-amount{font-size:15px;color:#2a66e7;font-weight:700;margin-bottom:16px;padding:10px 14px;background:rgba(42,102,231,.04);border-radius:6px;display:inline-block}
+.modal-box .m-section{margin-bottom:18px}
+.modal-box .m-section h4{font-size:14px;font-weight:700;color:#333;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #f0f0f0}
+.modal-box .m-section ul{padding-left:18px;margin:0}
+.modal-box .m-section li{font-size:13px;color:#666;line-height:1.8;margin-bottom:4px}
+.modal-box .m-section p{font-size:13px;color:#666;line-height:1.7}
+.modal-box .m-cta{display:block;width:100%;padding:12px;background:#f0b017;color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:700;cursor:pointer;text-align:center;transition:.3s;margin-top:8px}
+.modal-box .m-cta:hover{background:#e5a515}
+
+/* Footer */
 .footer{background:#1a1a2e;color:rgba(255,255,255,.5);padding:32px 0;text-align:center;font-size:12px}
 
-/* ===== 响应式 ===== */
+/* Responsive */
 @media(max-width:768px){
   .hero .container,.about-grid,.contact-grid{grid-template-columns:1fr}
   .hero h1{font-size:28px}
@@ -178,13 +190,9 @@ section{padding:64px 0}
 </head>
 <body>
 
-<!-- ===== 导航 ===== -->
 <div class="navbar">
   <div class="container">
-    <div class="logo">
-      <div class="logo-icon">默</div>
-      <span>默裕企服</span>
-    </div>
+    <div class="logo"><div class="logo-icon">默</div><span>默裕企服</span></div>
     <div class="nav-links">
       <a href="#" class="active">首页</a>
       <a href="#services">金融产品</a>
@@ -197,7 +205,7 @@ section{padding:64px 0}
   </div>
 </div>
 
-<!-- ===== Hero ===== -->
+<!-- Hero -->
 <section class="hero">
   <div class="container">
     <div>
@@ -217,18 +225,28 @@ section{padding:64px 0}
     </div>
     <div class="hero-visual">
       <div class="hero-card">
-        <h3>额度预估</h3>
-        <div class="calc-row"><span>信用额度预估</span><span style="color:#2a66e7;font-weight:700;">30万</span></div>
-        <div class="calc-row"><span>参考月利率</span><span>0.35% - 0.65%</span></div>
-        <div class="calc-row"><span>还款期限</span><span>12 - 60 期</span></div>
-        <div class="calc-row"><span>月供参考</span><span style="color:#2a66e7;">≈ 5,280元/月</span></div>
-        <div style="margin-top:16px;font-size:12px;color:#999;">*以上为估算参考，实际以银行审批为准</div>
+        <h3>📊 额度预估</h3>
+        <div class="slider-group">
+          <label>您的月收入 <span id="incomeVal">8,000元</span></label>
+          <input type="range" min="3000" max="50000" value="8000" step="1000" oninput="calcLoan(this.value)">
+        </div>
+        <div class="slider-group">
+          <label>期望贷款金额 <span id="loanVal">30万</span></label>
+          <input type="range" min="5" max="500" value="30" step="5" oninput="calcLoan(document.getElementById('incomeSlider').value)" id="loanSlider">
+          <input type="hidden" id="incomeSlider">
+        </div>
+        <div class="result-box">
+          <div class="amount" id="estResult">≈ 30万</div>
+          <div class="label">预估可贷额度</div>
+          <div style="font-size:12px;color:#999;margin-top:6px;" id="estDetail">月供参考：≈ 5,280元/月 | 期限：12-60期 | 利率：0.35%-0.65%</div>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:#bbb;text-align:center;">*以上为估算参考，实际以银行审批为准</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== 合作银行 ===== -->
+<!-- Partners -->
 <section class="partners" id="partners">
   <div class="container">
     <div class="text-center">
@@ -269,7 +287,7 @@ section{padding:64px 0}
   </div>
 </section>
 
-<!-- ===== 金融产品 ===== -->
+<!-- Products -->
 <section id="services">
   <div class="container">
     <div class="text-center">
@@ -277,126 +295,16 @@ section{padding:64px 0}
       <h2 class="section-title">全方位融资服务</h2>
       <p class="section-desc">覆盖企业全生命周期融资需求，一站式对接金融机构，精准匹配最优方案</p>
     </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="icon" style="background:rgba(42,102,231,.10);color:#2a66e7;">🏢</div>
-        <div class="cat-tag">贷款类</div>
-        <h3>企业经营贷款</h3>
-        <p>含流动资金贷款、周转贷款、固定资产贷款、项目贷款、技改贷款等，为中小微企业提供全方位经营资金支持。</p>
-        <div class="tags"><span>最高1000万</span><span>纯信用</span><span>3-5天放款</span></div>
-      </div>
-      <div class="service-card">
-        <div class="icon" style="background:rgba(240,176,23,.12);color:#f0b017;">💳</div>
-        <div class="cat-tag">贷款类</div>
-        <h3>个人信用贷款</h3>
-        <p>无需抵押担保，凭信用即可申请。额度最高50万，最快当天放款，随借随还灵活方便。</p>
-        <div class="tags"><span>最高50万</span><span>月利率0.35%起</span><span>1天放款</span></div>
-        <span class="rate">★ 热门产品</span>
-      </div>
-      <div class="service-card">
-        <div class="icon" style="background:rgba(84,170,109,.12);color:#54aa6d;">📄</div>
-        <div class="cat-tag">贷款类</div>
-        <h3>税e融</h3>
-        <p>基于企业纳税记录纯信用授信，纳税满1年即可申请，额度循环使用，随借随还，利率优惠。</p>
-        <div class="tags"><span>最高500万</span><span>纯信用</span><span>按日计息</span></div>
-      </div>
-      <div class="service-card">
-        <div class="icon" style="background:rgba(42,102,231,.10);color:#2a66e7;">💰</div>
-        <div class="cat-tag">贷款类</div>
-        <h3>发票贷</h3>
-        <p>基于企业开票数据的专属融资产品，额度最高5000万，线上申请极速审批，无需抵押，开票即贷。</p>
-        <div class="tags"><span>最高5000万</span><span>开票评估</span><span>极速审批</span></div>
-      </div>
-      <div class="service-card">
-        <div class="icon" style="background:rgba(240,176,23,.12);color:#f0b017;">🏠</div>
-        <div class="cat-tag">贷款类</div>
-        <h3>房产抵押贷款</h3>
-        <p>自有房产抵押融资，额度高、利率低、期限长，可用于经营周转或大额消费。</p>
-        <div class="tags"><span>最高2000万</span><span>年利率3.0%起</span><span>最长20年</span></div>
-      </div>
-      <div class="service-card">
-        <div class="icon" style="background:rgba(84,170,109,.12);color:#54aa6d;">🔬</div>
-        <div class="cat-tag">贷款类</div>
-        <h3>科技创新贷</h3>
-        <p>面向高新技术企业、专精特新、科技型中小企业的专属融资，支持知识产权质押、股权质押。</p>
-        <div class="tags"><span>最高3000万</span><span>贴息支持</span><span>科技专属</span></div>
-      </div>
-      <div class="service-card">
-        <div class="icon" style="background:rgba(42,102,231,.10);color:#2a66e7;">🎓</div>
-        <div class="cat-tag">政策性产品</div>
-        <h3>创业担保贷款</h3>
-        <p>政府贴息支持的创业贷款，为初创企业和小微创业者提供低成本启动资金，最高可享财政全额贴息。</p>
-        <div class="tags"><span>最高50万</span><span>财政贴息</span><span>免抵押</span></div>
-      </div>
-      <div class="service-card">
-        <div class="icon" style="background:rgba(240,176,23,.12);color:#f0b017;">🎓</div>
-        <div class="cat-tag">政策性产品</div>
-        <h3>富民创业贷</h3>
-        <p>面向创业者和初创企业的政策贴息贷款产品，助力创业就业，享受财政贴息支持。</p>
-        <div class="tags"><span>最高50万</span><span>财政贴息</span><span>免抵押</span></div>
-      </div>
-      <div class="service-card">
-        <div class="icon" style="background:rgba(84,170,109,.12);color:#54aa6d;">🌾</div>
-        <div class="cat-tag">政策性产品</div>
-        <h3>惠农快贷</h3>
-        <p>面向农业合作社、家庭农场、种植养殖大户的专项融资服务，支持农地经营权抵押、政策性贴息。</p>
-        <div class="tags"><span>最高500万</span><span>农地抵押</span><span>政策性贴息</span></div>
-      </div>
-      <div class="service-card">
-        <div class="icon" style="background:rgba(42,102,231,.10);color:#2a66e7;">💎</div>
-        <div class="cat-tag">政策性产品</div>
-        <h3>知识产权质押贷</h3>
-        <p>以专利、商标、著作权等知识产权作为质押物，助力科技型企业解决轻资产融资难题，享受贴息支持。</p>
-        <div class="tags"><span>最高1000万</span><span>评估贴息</span><span>科技专属</span></div>
-      </div>
-      <div class="service-card">
-        <div class="icon" style="background:rgba(240,176,23,.12);color:#f0b017;">🔄</div>
-        <div class="cat-tag">供应链金融</div>
-        <h3>供应链金融</h3>
-        <p>基于核心企业信用的上下游融资服务，支持应收账款质押、订单融资、存货质押，产业链协同融资。</p>
-        <div class="tags"><span>最高5000万</span><span>循环授信</span><span>随借随还</span></div>
-      </div>
-      <div class="service-card">
-        <div class="icon" style="background:rgba(84,170,109,.12);color:#54aa6d;">🌐</div>
-        <div class="cat-tag">供应链金融</div>
-        <h3>产业链金融</h3>
-        <p>围绕核心企业的上下游产业链提供融资服务，支持订单融资、仓单质押、预付款融资等多种模式。</p>
-        <div class="tags"><span>最高3000万</span><span>产业链专属</span><span>随借随还</span></div>
-      </div>
-      <div class="service-card">
-        <div class="icon" style="background:rgba(42,102,231,.10);color:#2a66e7;">📋</div>
-        <div class="cat-tag">贷款类</div>
-        <h3>制造业贴息贷款</h3>
-        <p>面向制造业企业的贴息贷款产品，支持设备更新、技术改造、智能化升级，享受财政贴息。</p>
-        <div class="tags"><span>最高3000万</span><span>贴息支持</span><span>制造业专属</span></div>
-      </div>
-      <div class="service-card">
-        <div class="icon" style="background:rgba(240,176,23,.12);color:#f0b017;">👤</div>
-        <div class="cat-tag">政策性产品</div>
-        <h3>人才贷</h3>
-        <p>面向高层次人才创办企业的专属融资产品，凭人才资质即可申请，额度高、利率优、审批快。</p>
-        <div class="tags"><span>最高1000万</span><span>人才专属</span><span>快速审批</span></div>
-      </div>
-      <div class="service-card">
-        <div class="icon" style="background:rgba(84,170,109,.12);color:#54aa6d;">🏗️</div>
-        <div class="cat-tag">贷款类</div>
-        <h3>国际贸易融资</h3>
-        <p>面向外贸企业的国际贸易融资服务，支持信用证、出口押汇、进口押汇、打包贷款等多种模式。</p>
-        <div class="tags"><span>最高2000万</span><span>外贸专属</span><span>灵活还款</span></div>
-      </div>
-      <div class="service-card" style="cursor:pointer;" onclick="location.href='report.html'">
-        <div class="icon" style="background:rgba(245,158,11,.1);color:#f0b017;">📋</div>
-        <div class="cat-tag">信用服务</div>
-        <h3>水母报告 · 企业信用查询</h3>
-        <p>输入企业名称或信用代码，一键查询企业信用报告。另提供开票信用评估，额度最高5000万。</p>
-        <div class="tags"><span>企业报告</span><span>开票评估</span><span>最高5000万</span></div>
-        <span class="rate">🔥 新上线</span>
-      </div>
-    </div>
+    <div class="services-grid" id="productGrid"></div>
   </div>
 </section>
 
-<!-- ===== 为什么选择默裕企服 ===== -->
+<!-- Product Modal -->
+<div class="modal-overlay" id="productModal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box" id="modalContent"></div>
+</div>
+
+<!-- Why Us -->
 <section class="advantages">
   <div class="container">
     <div class="text-center">
@@ -405,35 +313,15 @@ section{padding:64px 0}
       <p class="section-desc">五大核心优势，让您贷得放心、贷得省心</p>
     </div>
     <div class="adv-grid">
-      <div class="adv-card">
-        <div class="icon">🏦</div>
-        <strong>30+</strong>
-        <h4>海量银行渠道</h4>
-        <p>与全国30多家银行建立直连合作，覆盖国有行、股份行、城商行及互联网银行</p>
-      </div>
-      <div class="adv-card">
-        <div class="icon">🎯</div>
-        <strong>98.6%</strong>
-        <h4>精准匹配</h4>
-        <p>智能评估系统+人工复核，从数百款产品中精挑细选，确保推荐方案最优</p>
-      </div>
-      <div class="adv-card">
-        <div class="icon">⚡</div>
-        <strong>1天</strong>
-        <h4>极速放款</h4>
-        <p>线上预审30分钟出额度，材料齐全最快1天到账，急用钱不用等</p>
-      </div>
-      <div class="adv-card">
-        <div class="icon">🛡️</div>
-        <strong>0</strong>
-        <h4>隐藏费用</h4>
-        <p>签约前签署费用确认单，无任何隐性收费，贷款全程进度实时可查</p>
-      </div>
+      <div class="adv-card"><div class="icon">🏦</div><strong>30+</strong><h4>海量银行渠道</h4><p>与全国30多家银行建立直连合作，覆盖国有行、股份行、城商行及互联网银行</p></div>
+      <div class="adv-card"><div class="icon">🎯</div><strong>98.6%</strong><h4>精准匹配</h4><p>智能评估系统+人工复核，从数百款产品中精挑细选，确保推荐方案最优</p></div>
+      <div class="adv-card"><div class="icon">⚡</div><strong>1天</strong><h4>极速放款</h4><p>线上预审30分钟出额度，材料齐全最快1天到账，急用钱不用等</p></div>
+      <div class="adv-card"><div class="icon">🛡️</div><strong>0</strong><h4>隐藏费用</h4><p>签约前签署费用确认单，无任何隐性收费，贷款全程进度实时可查</p></div>
     </div>
   </div>
 </section>
 
-<!-- ===== 办理流程 ===== -->
+<!-- Process -->
 <section class="process">
   <div class="container">
     <div class="text-center">
@@ -442,31 +330,15 @@ section{padding:64px 0}
       <p class="section-desc">简单四步，即可获得资金支持</p>
     </div>
     <div class="process-steps">
-      <div class="step">
-        <div class="num">1</div>
-        <h4>提交需求</h4>
-        <p>填写基本信息与贷款需求，在线预审快速出额度</p>
-      </div>
-      <div class="step">
-        <div class="num">2</div>
-        <h4>方案匹配</h4>
-        <p>智能匹配+人工精选，推荐最优银行产品组合</p>
-      </div>
-      <div class="step">
-        <div class="num">3</div>
-        <h4>协助办理</h4>
-        <p>全程协助准备材料、填写申请、跟进审批进度</p>
-      </div>
-      <div class="step">
-        <div class="num">4</div>
-        <h4>成功放款</h4>
-        <p>银行审批通过后放款到账，贷后持续关注与服务</p>
-      </div>
+      <div class="step"><div class="num">1</div><h4>提交需求</h4><p>填写基本信息与贷款需求，在线预审快速出额度</p></div>
+      <div class="step"><div class="num">2</div><h4>方案匹配</h4><p>智能匹配+人工精选，推荐最优银行产品组合</p></div>
+      <div class="step"><div class="num">3</div><h4>协助办理</h4><p>全程协助准备材料、填写申请、跟进审批进度</p></div>
+      <div class="step"><div class="num">4</div><h4>成功放款</h4><p>银行审批通过后放款到账，贷后持续关注与服务</p></div>
     </div>
   </div>
 </section>
 
-<!-- ===== 关于我们 ===== -->
+<!-- About -->
 <section class="about" id="about">
   <div class="container">
     <div class="about-grid">
@@ -475,24 +347,10 @@ section{padding:64px 0}
         <h2>值得信赖的贷款服务专家</h2>
         <p>默裕企服成立于2018年，总部位于上海，是一家专注于为个人及中小微企业提供企业融资咨询与撮合服务的专业机构。我们不直接放贷，而是作为您的融资顾问，精准对接最优银行产品。</p>
         <p>累计服务客户超过6,000组，放款成功率86.5%，平均审批时效1.8天。</p>
-        <div class="about-features">
-          <div class="about-feat">
-            <div class="icon">✓</div>
-            <div><strong>持牌合规</strong><span>正规注册，严守监管要求</span></div>
-          </div>
-          <div class="about-feat">
-            <div class="icon">✓</div>
-            <div><strong>费用透明</strong><span>签约前明示所有费用</span></div>
-          </div>
-          <div class="about-feat">
-            <div class="icon">✓</div>
-            <div><strong>隐私保护</strong><span>客户信息全程加密</span></div>
-          </div>
-          <div class="about-feat">
-            <div class="icon">✓</div>
-            <div><strong>售后跟进</strong><span>放款后持续服务</span></div>
-          </div>
-        </div>
+        <div class="about-feat"><div class="icon">✓</div><div><strong>持牌合规</strong><span>正规注册，严守监管要求</span></div></div>
+        <div class="about-feat"><div class="icon">✓</div><div><strong>费用透明</strong><span>签约前明示所有费用</span></div></div>
+        <div class="about-feat"><div class="icon">✓</div><div><strong>隐私保护</strong><span>客户信息全程加密</span></div></div>
+        <div class="about-feat"><div class="icon">✓</div><div><strong>售后跟进</strong><span>放款后持续服务</span></div></div>
       </div>
       <div class="about-quote">
         <blockquote>"助贷不是简单的信息撮合，而是用专业能力为客户创造价值。每一个融资方案背后，都是对客户需求的深度理解。"</blockquote>
@@ -502,7 +360,7 @@ section{padding:64px 0}
   </div>
 </section>
 
-<!-- ===== 成功案例 ===== -->
+<!-- Cases -->
 <section class="cases">
   <div class="container">
     <div class="text-center">
@@ -511,35 +369,14 @@ section{padding:64px 0}
       <p class="section-desc">每一个案例背后，都是一份信任与专业的双向奔赴</p>
     </div>
     <div class="cases-grid">
-      <div class="case-card">
-        <div class="case-body">
-          <div class="tag">企业经营贷</div>
-          <h4>张先生 · 餐饮连锁店扩张</h4>
-          <p>经营3家餐饮店，因扩张需求资金80万。推荐税贷+信用组合方案，最终获批75万，年利率4.2%。</p>
-          <div class="result"><span>💰 获批：75万</span><span>⚡ 用时：3天</span></div>
-        </div>
-      </div>
-      <div class="case-card">
-        <div class="case-body">
-          <div class="tag">个人信用贷</div>
-          <h4>李女士 · 装修资金周转</h4>
-          <p>新房装修急需20万，因自由职业收入不稳定难以获批。匹配特定银行产品，最终获批18万。</p>
-          <div class="result"><span>💰 获批：18万</span><span>⚡ 用时：1天</span></div>
-        </div>
-      </div>
-      <div class="case-card">
-        <div class="case-body">
-          <div class="tag">房产抵押贷</div>
-          <h4>王先生 · 企业扩大生产线</h4>
-          <p>制造业企业老板，需要300万购置设备。协调过桥解押+抵押同步操作，最终获批280万，年利率3.2%。</p>
-          <div class="result"><span>💰 获批：280万</span><span>⚡ 用时：7天</span></div>
-        </div>
-      </div>
+      <div class="case-card"><div class="tag">企业经营贷</div><h4>张先生 · 餐饮连锁店扩张</h4><p>经营3家餐饮店，因扩张需求80万。推荐税贷+信用组合方案，获批75万，年利率4.2%。</p><div class="result"><span>💰 获批：75万</span><span>⚡ 用时：3天</span></div></div>
+      <div class="case-card"><div class="tag">个人信用贷</div><h4>李女士 · 装修资金周转</h4><p>新房装修急需20万，匹配特定银行产品，获批18万，月利率0.38%。</p><div class="result"><span>💰 获批：18万</span><span>⚡ 用时：1天</span></div></div>
+      <div class="case-card"><div class="tag">房产抵押贷</div><h4>王先生 · 企业扩大生产线</h4><p>需300万购置设备。协调过桥解押+抵押同步操作，获批280万，年利率3.2%。</p><div class="result"><span>💰 获批：280万</span><span>⚡ 用时：7天</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- ===== FAQ ===== -->
+<!-- FAQ -->
 <section class="faq" id="faq">
   <div class="container">
     <div class="text-center">
@@ -548,31 +385,16 @@ section{padding:64px 0}
       <p class="section-desc">您关心的问题，这里有答案</p>
     </div>
     <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">找助贷公司和自己去银行有什么区别？<span class="arrow">▼</span></button>
-        <div class="faq-a">助贷公司实质是您的"贷款经纪人"。我们了解几十家银行上百款产品的准入标准和审批要点，能精准推荐最适合您的产品。还有丰富的材料准备和沟通经验，能大幅提高通过率。对您来说完全免费——服务费由银行支付。</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">贷款需要什么条件？<span class="arrow">▼</span></button>
-        <div class="faq-a">基本要求：年龄22-60周岁；有稳定的收入来源；信用记录良好。企业贷还需要企业注册满1年、有持续经营流水等。建议先提交基本信息，免费评估后确认符合条件的产品。</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">信用记录不好还能贷款吗？<span class="arrow">▼</span></button>
-        <div class="faq-a">视具体情况而定。轻微的逾期大部分银行可接受；严重的逾期会影响通过率。但部分银行产品对征信要求较灵活，或有抵押类产品可覆盖。</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">最快多久能放款？<span class="arrow">▼</span></button>
-        <div class="faq-a">最快1天放款。信用类贷款材料齐全的情况下，最快当天审批、次日到账。抵押类贷款通常需要5-10个工作日。</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">助贷收费吗？<span class="arrow">▼</span></button>
-        <div class="faq-a">咨询、评估、方案匹配全程免费。只有在您确认签约后收取服务费（放款金额的1%-3%），签约前明示确认。</div>
-      </div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">找助贷公司和自己去银行有什么区别？<span class="arrow">▼</span></button><div class="faq-a">助贷公司实质是您的贷款经纪人。我们了解几十家银行上百款产品的准入标准和审批要点，能精准推荐最适合您的产品。对您来说完全免费——服务费由银行支付。</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">贷款需要什么条件？<span class="arrow">▼</span></button><div class="faq-a">基本要求：年龄22-60周岁；有稳定的收入来源；信用记录良好。企业贷还需企业注册满1年、有持续经营流水。</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">信用记录不好还能贷款吗？<span class="arrow">▼</span></button><div class="faq-a">轻微逾期大部分银行可接受；严重逾期会影响通过率。部分银行对征信要求较灵活，或有抵押类产品可覆盖。</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">最快多久能放款？<span class="arrow">▼</span></button><div class="faq-a">最快1天放款。信用类贷款最快当天审批、次日到账。抵押类贷款通常需要5-10个工作日。</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">助贷收费吗？<span class="arrow">▼</span></button><div class="faq-a">咨询、评估、方案匹配全程免费。仅在签约后收取服务费（放款金额的1%-3%），签约前明示确认。</div></div>
     </div>
   </div>
 </section>
 
-<!-- ===== 联系 ===== -->
+<!-- Contact -->
 <section id="contact">
   <div class="container">
     <div class="text-center">
@@ -581,42 +403,213 @@ section{padding:64px 0}
       <p class="section-desc">免费评估，不成功不收费</p>
     </div>
     <div class="contact-grid">
-      <div class="contact-form">
-        <input type="text" placeholder="您的姓名">
-        <input type="tel" placeholder="手机号码">
-        <select><option>贷款金额</option><option>10万以下</option><option>10-50万</option><option>50-100万</option><option>100-500万</option><option>500万以上</option></select>
-        <select><option>贷款类型</option><option>个人信用贷款</option><option>企业经营贷款</option><option>房产抵押贷款</option><option>其他</option></select>
-        <textarea placeholder="补充说明（选填）"></textarea>
-        <button class="submit-btn">提交咨询 · 免费评估</button>
-      </div>
-      <div class="contact-info">
-        <h3>联系我们</h3>
-        <p>专业融资顾问为您提供一对一服务<br>工作日 9:00 - 18:00 在线</p>
+      <div style="color:#fff;">
+        <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;">联系我们</h3>
+        <p style="font-size:14px;opacity:.8;line-height:1.8;margin-bottom:16px;">专业融资顾问为您提供一对一服务<br>工作日 9:00 - 18:00</p>
         <div class="info-item">📞 咨询热线：13395277076</div>
         <div class="info-item">📱 微信：13395277076</div>
-        <div class="info-item">📍 总部地址：上海市浦东新区东方路818号</div>
+        <div class="info-item">📍 地址：上海市浦东新区东方路818号</div>
         <div class="info-item">📧 邮箱：1345449717@qq.com</div>
-        <div style="margin-top:16px;text-align:center;">
-            <p style="font-size:13px;opacity:.7;margin-bottom:10px;">扫码添加企业微信</p>
-            <img src="wechat-qr.jpg" alt="微信二维码" style="width:140px;height:140px;border-radius:8px;border:2px solid rgba(255,255,255,.2);">
+        <div style="margin-top:20px;text-align:center;">
+          <p style="font-size:13px;opacity:.7;margin-bottom:10px;">扫码添加企业微信</p>
+          <img src="wechat-qr.jpg" alt="微信" style="width:140px;height:140px;border-radius:8px;border:2px solid rgba(255,255,255,.2);">
         </div>
       </div>
+      <div></div>
     </div>
   </div>
 </section>
 
 <div class="footer">
   <div class="container">
-    <p>默裕企服 · 专业企业融资服务<br>© 2026 默裕企服 版权所有 | 沪ICP备xxxxxxxx号</p>
+    <p>默裕企服 · 专业企业融资服务<br>© 2026 默裕企服 版权所有</p>
   </div>
 </div>
 
 <script>
-function toggleFaq(el) {
-  el.classList.toggle("open");
-  var answer = el.nextElementSibling;
-  answer.classList.toggle("show");
+// ===== 额度计算器 =====
+function calcLoan(income) {
+  document.getElementById('incomeSlider').value = income;
+  document.getElementById('incomeVal').textContent = Number(income).toLocaleString() + '元';
+  var loan = document.getElementById('loanSlider').value;
+  document.getElementById('loanVal').textContent = loan + '万';
+  // Estimate based on income multiple
+  var base = Math.round(income * 0.4 * 36 / 10000);
+  var est = Math.min(Math.max(base, 5), 500);
+  document.getElementById('estResult').textContent = '≈ ' + est + '万';
 }
+calcLoan(8000);
+
+// ===== 产品数据 =====
+var products = [
+  {id:'qyjy',cat:'贷款类',icon:'🏢',color:'#2a66e7',name:'企业经营贷款',desc:'含流动资金贷款、周转贷款、固定资产贷款、项目贷款、技改贷款等，为中小微企业提供全方位经营资金支持。',tags:['最高1000万','纯信用','3-5天放款'],
+   detail:'企业经营贷款是指银行向企业发放的用于生产经营活动的贷款，包含流动资金贷款、周转贷款、固定资产贷款、项目贷款、技改贷款等多种类型。',
+   amount:'最高1000万元',rate:'年利率3.5%起',term:'1-5年',feature:'纯信用/抵押均可，审批快，放款灵活',
+   req:'企业注册满1年、正常经营、有持续经营流水、信用记录良好',doc:'营业执照、近6个月银行流水、经营场地证明、法人身份证、财务报表',
+   process:'提交资料→银行审批→签订合同→放款到账→按期还款'},
+
+  {id:'grxy',cat:'贷款类',icon:'💳',color:'#f0b017',name:'个人信用贷款',desc:'无需抵押担保，凭信用即可申请。额度最高50万，最快当天放款，随借随还灵活方便。',tags:['最高50万','月利率0.35%起','1天放款'],hot:'★ 热门产品',
+   detail:'个人信用贷款是以借款人信用为担保的贷款产品，无需抵押物，凭个人信用记录和还款能力即可申请。',
+   amount:'最高50万元',rate:'月利率0.35%-0.65%',term:'12-60期',feature:'无需抵押、纯信用、放款快',
+   req:'年龄22-60周岁、有稳定收入来源、信用记录良好、有社保/公积金更佳',doc:'身份证、近6个月银行流水、工作证明/收入证明、社保/公积金记录',
+   process:'提交申请→系统审批→签约→放款'},
+
+  {id:'sre',cat:'贷款类',icon:'📄',color:'#54aa6d',name:'税e融',desc:'基于企业纳税记录纯信用授信，纳税满1年即可申请，额度循环使用，随借随还，利率优惠。',tags:['最高500万','纯信用','按日计息'],
+   detail:'税e融是银行基于企业纳税记录推出的纯信用贷款产品，以企业纳税数据为核心授信依据，无需抵押担保。',
+   amount:'最高500万元',rate:'年利率4.0%起',term:'12个月，可循环',feature:'纯信用、按日计息、随借随还',
+   req:'企业注册满1年、纳税评级A/B级、纳税记录正常',doc:'营业执照、纳税证明、法人身份证、近6个月纳税记录',
+   process:'授权纳税数据→系统自动评估→签约→放款→随借随还'},
+
+  {id:'fpl',cat:'贷款类',icon:'💰',color:'#f0b017',name:'发票贷',desc:'基于企业开票数据的专属融资产品，额度最高5000万，线上申请极速审批，无需抵押，开票即贷。',tags:['最高5000万','开票评估','极速审批'],
+   detail:'发票贷是基于企业开票数据的专项融资产品，通过分析企业开票金额、开票频率、开票客户质量等数据进行授信。',
+   amount:'最高5000万元',rate:'年利率4.5%起',term:'6-36个月',feature:'无需抵押、线上申请、极速审批',
+   req:'企业注册满1年、有持续开票记录、开票金额稳定',doc:'营业执照、近12个月开票记录、法人身份证、经营场地证明',
+   process:'授权开票数据→系统评估→审批→签约→放款'},
+
+  {id:'fcdy',cat:'贷款类',icon:'🏠',color:'#2a66e7',name:'房产抵押贷款',desc:'自有房产抵押融资，额度高、利率低、期限长，可用于经营周转或大额消费。',tags:['最高2000万','年利率3.0%起','最长20年'],
+   detail:'房产抵押贷款是以自有房产作为抵押物向银行申请的贷款，额度高、利率低、期限长，适合大额资金需求。',
+   amount:'最高2000万元',rate:'年利率3.0%起',term:'最长20年',feature:'额度高、利率低、期限长',
+   req:'有自有房产、产权清晰、评估价值充足、有还款来源',doc:'房产证、身份证、收入证明、评估报告、婚姻证明',
+   process:'房产评估→提交材料→银行审批→签订合同→办理抵押→放款'},
+
+  {id:'kjcx',cat:'贷款类',icon:'🔬',color:'#54aa6d',name:'科技创新贷',desc:'面向高新技术企业、专精特新、科技型中小企业的专属融资，支持知识产权质押、股权质押。',tags:['最高3000万','贴息支持','科技专属'],
+   detail:'科技创新贷是面向高新技术企业、专精特新企业、科技型中小企业的专属融资产品，支持知识产权质押、股权质押等创新担保方式，享受政府贴息。',
+   amount:'最高3000万元',rate:'年利率3.5%起，可贴息',term:'1-3年',feature:'科技专属、贴息支持、多种质押',
+   req:'高新技术企业/专精特新/科技型中小企业资质',doc:'营业执照、资质证书、知识产权证明、财务报表、项目计划书',
+   process:'提交申请→资质审核→评估授信→签约→放款'},
+
+  {id:'cydb',cat:'政策性产品',icon:'🎓',color:'#2a66e7',name:'创业担保贷款',desc:'政府贴息支持的创业贷款，为初创企业和小微创业者提供低成本启动资金，最高可享财政全额贴息。',tags:['最高50万','财政贴息','免抵押'],
+   detail:'创业担保贷款是政府贴息支持的专项创业贷款产品，为初创企业和小微创业者提供低成本的启动资金。',
+   amount:'最高50万元',rate:'财政贴息，低至0利率',term:'最长3年',feature:'财政贴息、免抵押、创业扶持',
+   req:'创业项目可行、领取营业执照、有固定的经营场所',doc:'营业执照、创业计划书、身份证明、经营场所证明',
+   process:'申请→人社审核→银行审批→担保确认→放款'},
+
+  {id:'fmcy',cat:'政策性产品',icon:'🎓',color:'#f0b017',name:'富民创业贷',desc:'面向创业者和初创企业的政策贴息贷款产品，助力创业就业，享受财政贴息支持。',tags:['最高50万','财政贴息','免抵押'],
+   detail:'富民创业贷是政府为支持创业就业推出的政策性贷款产品，面向创业者和初创企业，享受财政贴息。',
+   amount:'最高50万元',rate:'财政贴息',term:'1-3年',feature:'创业扶持、财政贴息、审批快',
+   req:'创业项目、营业执照、有经营场所',doc:'营业执照、法人身份证、创业计划书、经营场所证明',
+   process:'申请→审核→贴息确认→放款'},
+
+  {id:'hnkd',cat:'政策性产品',icon:'🌾',color:'#54aa6d',name:'惠农快贷',desc:'面向农业合作社、家庭农场、种植养殖大户的专项融资服务，支持农地经营权抵押、政策性贴息。',tags:['最高500万','农地抵押','政策性贴息'],
+   detail:'惠农快贷是面向农业经营主体的专项融资产品，支持农地经营权抵押、农业补贴质押等创新担保方式。',
+   amount:'最高500万元',rate:'年利率3.5%起，政策性贴息',term:'1-5年，季节性还款',feature:'农地抵押、政策性贴息、季节性还款',
+   req:'农业合作社/家庭农场/种植养殖大户资质',doc:'营业执照、土地经营权证明、农业补贴证明、经营计划',
+   process:'申请→审核→评估→签约→放款'},
+
+  {id:'zscq',cat:'政策性产品',icon:'💎',color:'#2a66e7',name:'知识产权质押贷',desc:'以专利、商标、著作权等知识产权作为质押物，助力科技型企业解决轻资产融资难题，享受贴息支持。',tags:['最高1000万','评估贴息','科技专属'],
+   detail:'知识产权质押贷是以专利、商标、著作权等知识产权作为质押物的创新型融资产品，解决科技型企业轻资产融资难题。',
+   amount:'最高1000万元',rate:'年利率3.5%起，可贴息',term:'1-3年',feature:'知识产权质押、评估贴息、科技专属',
+   req:'拥有自主知识产权的科技型企业',doc:'营业执照、知识产权证书、评估报告、财务报表',
+   process:'知识产权评估→申请→银行审批→质押登记→放款'},
+
+  {id:'gyljr',cat:'供应链金融',icon:'🔄',color:'#f0b017',name:'供应链金融',desc:'基于核心企业信用的上下游融资服务，支持应收账款质押、订单融资、存货质押，产业链协同融资。',tags:['最高5000万','循环授信','随借随还'],
+   detail:'供应链金融是基于核心企业信用为上下游企业提供的融资服务，支持应收账款质押、订单融资、存货质押、预付款融资等多种模式。',
+   amount:'最高5000万元',rate:'年利率4.0%起',term:'随借随还，按日计息',feature:'循环授信、多种质押、产业链协同',
+   req:'为核心企业上下游供应商/经销商、有稳定贸易关系',doc:'营业执照、贸易合同、发票/订单/仓单、核心企业确认函',
+   process:'核心企业确认→贸易真实核查→授信审批→签约→放款→回款结清'},
+
+  {id:'cyljr',cat:'供应链金融',icon:'🌐',color:'#54aa6d',name:'产业链金融',desc:'围绕核心企业的上下游产业链提供融资服务，支持订单融资、仓单质押、预付款融资等多种模式。',tags:['最高3000万','产业链专属','随借随还'],
+   detail:'产业链金融是围绕核心企业上下游产业链提供的综合性融资服务，通过整合产业链信息流、资金流、物流数据进行授信。',
+   amount:'最高3000万元',rate:'年利率4.0%起',term:'灵活期限',feature:'产业链专属、随借随还、多种模式',
+   req:'产业链上下游企业、有稳定贸易关系',doc:'营业执照、贸易合同、订单/仓单、物流单据',
+   process:'贸易背景核实→授信审批→签约→放款→回款'},
+
+  {id:'zzstx',cat:'贷款类',icon:'📋',color:'#2a66e7',name:'制造业贴息贷款',desc:'面向制造业企业的贴息贷款产品，支持设备更新、技术改造、智能化升级，享受财政贴息。',tags:['最高3000万','贴息支持','制造业专属'],
+   detail:'制造业贴息贷款是面向制造业企业的专项贴息贷款产品，支持设备更新、技术改造、智能化升级、数字化转型等，享受财政贴息。',
+   amount:'最高3000万元',rate:'年利率3.0%起，享受贴息',term:'1-5年',feature:'制造业专属、贴息支持、设备更新',
+   req:'制造业企业、有技术改造/设备更新计划',doc:'营业执照、技改方案、设备采购合同、财务报表',
+   process:'项目备案→贴息申请→银行审批→签约→放款→贴息到账'},
+
+  {id:'rcd',cat:'政策性产品',icon:'👤',color:'#f0b017',name:'人才贷',desc:'面向高层次人才创办企业的专属融资产品，凭人才资质即可申请，额度高、利率优、审批快。',tags:['最高1000万','人才专属','快速审批'],
+   detail:'人才贷是面向高层次人才创办企业的专属融资产品，凭人才资质即可申请，享受利率优惠和快速审批通道。',
+   amount:'最高1000万元',rate:'年利率3.5%起，人才优惠',term:'1-3年',feature:'人才专属、快速审批、利率优惠',
+   req:'高层次人才（省级以上人才计划入选者/博士/高级职称等）',doc:'人才资质证书、营业执照、创业计划书、身份证明',
+   process:'人才资质核验→申请→银行审批→签约→放款'},
+
+  {id:'gjmy',cat:'贷款类',icon:'🏗️',color:'#54aa6d',name:'国际贸易融资',desc:'面向外贸企业的国际贸易融资服务，支持信用证、出口押汇、进口押汇、打包贷款等多种模式。',tags:['最高2000万','外贸专属','灵活还款'],
+   detail:'国际贸易融资是面向外贸企业提供的专项融资服务，支持信用证、出口押汇、进口押汇、打包贷款、出口信用保险融资等多种模式。',
+   amount:'最高2000万元',rate:'年利率3.5%起',term:'随单结算',feature:'外贸专属、多种模式、灵活还款',
+   req:'有进出口经营资质、有真实贸易背景',doc:'营业执照、进出口资质、贸易合同、信用证/提单/发票',
+   process:'贸易背景核实→授信审批→签约→放款→结算还款'},
+
+  {id:'smbg',cat:'信用服务',icon:'📋',color:'#f0b017',name:'水母报告 · 企业信用查询',desc:'输入企业名称或信用代码，一键查询企业信用报告。另提供开票信用评估，额度最高5000万。',tags:['企业报告','开票评估','最高5000万'],hot:'🔥 新上线',
+   detail:'水母报告是企业信用查询工具，输入企业名称或统一社会信用代码即可一键查询企业信用报告，提供企业基本信息、经营状况、信用评估等全方位信息。',
+   amount:'开票评估最高5000万元',rate:'免费查询',term:'实时',feature:'企业报告、开票评估、信用查询',
+   req:'无需条件，免费查询',doc:'企业名称或统一社会信用代码',
+   process:'输入企业名称→查询报告→查看结果→申请信贷',
+   link:'report.html'}
+];
+
+// ===== 渲染产品 =====
+function renderProducts() {
+  var grid = document.getElementById('productGrid');
+  var html = '';
+  for (var i = 0; i < products.length; i++) {
+    var p = products[i];
+    html += '<div class="service-card" onclick="showProduct(' + i + ')">';
+    html += '<div class="icon" style="background:rgba(' + hexToRgb(p.color) + ',.12);color:' + p.color + ';">' + p.icon + '</div>';
+    html += '<div class="cat-tag">' + p.cat + '</div>';
+    html += '<h3>' + p.name + '</h3>';
+    html += '<p>' + p.desc + '</p>';
+    html += '<div class="tags">';
+    for (var j = 0; j < p.tags.length; j++) {
+      html += '<span>' + p.tags[j] + '</span>';
+    }
+    html += '</div>';
+    if (p.hot) html += '<span class="rate">' + p.hot + '</span>';
+    html += '<div class="view-detail">查看详情 →</div>';
+    html += '</div>';
+  }
+  grid.innerHTML = html;
+}
+
+function hexToRgb(hex) {
+  var r = parseInt(hex.slice(1,3), 16),
+      g = parseInt(hex.slice(3,5), 16),
+      b = parseInt(hex.slice(5,7), 16);
+  return r + ',' + g + ',' + b;
+}
+
+// ===== 产品详情弹窗 =====
+function showProduct(idx) {
+  var p = products[idx];
+  var html = '<button class="modal-close" onclick="closeModal()">✕</button>';
+  html += '<div class="m-cat" style="background:rgba(' + hexToRgb(p.color) + ',.1);color:' + p.color + ';">' + p.cat + '</div>';
+  html += '<h2>' + p.icon + ' ' + p.name + '</h2>';
+  html += '<div class="m-amount">💰 ' + p.amount + '</div>';
+  html += '<div class="m-section"><h4>📖 产品介绍</h4><p>' + p.detail + '</p></div>';
+  html += '<div class="m-section"><h4>📊 产品要素</h4><ul>';
+  html += '<li><strong>可贷额度：</strong>' + p.amount + '</li>';
+  html += '<li><strong>参考利率：</strong>' + p.rate + '</li>';
+  html += '<li><strong>贷款期限：</strong>' + p.term + '</li>';
+  html += '<li><strong>产品特点：</strong>' + p.feature + '</li>';
+  html += '</ul></div>';
+  html += '<div class="m-section"><h4>✅ 申请条件</h4><p>' + p.req + '</p></div>';
+  html += '<div class="m-section"><h4>📄 所需材料</h4><p>' + p.doc + '</p></div>';
+  html += '<div class="m-section"><h4>📋 办理流程</h4><p>' + p.process + '</p></div>';
+  if (p.link) {
+    html += '<a href="' + p.link + '" class="m-cta" style="text-decoration:none;display:block;text-align:center;">立即查询 →</a>';
+  } else {
+    html += '<a href="#contact" class="m-cta" style="text-decoration:none;display:block;text-align:center;" onclick="closeModal()">📞 立即咨询</a>';
+  }
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('productModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('productModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// ===== FAQ =====
+function toggleFaq(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('show');
+}
+
+// ===== Init =====
+renderProducts();
 </script>
 </body>
 </html>
