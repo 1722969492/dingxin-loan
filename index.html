@@ -460,7 +460,7 @@ function calcLoan() {
   
   var est, detail;
   if (calcType === 'personal') {
-    est = Math.min(Math.max(Math.round(income * 0.4 * 36 / 10000), 5), 300);
+    est = Math.min(Math.max(Math.round(income * 30 / 10000), 5), 300);
     detail = '年化利率：3.0%-5.5% | 期限：12-60期';
   } else {
     est = Math.min(Math.max(Math.round(income * 0.3 * 2), 10), 2000);
