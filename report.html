@@ -260,7 +260,8 @@
         .qr-modal .qr-box h3 { font-size: 16px; color: var(--text); margin-bottom: 6px; }
         .qr-modal .qr-box p { font-size: 12px; color: var(--text-light); margin-bottom: 16px; }
         .qr-modal .qr-box .qr-img {
-            width: 200px; height: 200px;
+            width: 260px; height: auto;
+            max-height: 260px;
             object-fit: contain;
             border: 2px solid #eee;
             border-radius: 12px;
@@ -269,7 +270,7 @@
         }
         .qr-modal .qr-box .qr-url {
             margin-top: 12px;
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-light);
             word-break: break-all;
             background: var(--bg-alt);
@@ -536,10 +537,13 @@
         <div class="qr-modal" id="qrModal" onclick="if(event.target===this)hideQRCode()">
             <div class="qr-box">
                 <h3>📱 手机扫码查询</h3>
-                <p>使用手机扫描下方二维码，打开水母报告官网查询企业信用</p>
+                <p>使用微信/支付宝扫一扫，打开水母报告查询企业信用</p>
                 <img src="shuimu_qr.jpg" alt="水母报告二维码" class="qr-img" id="qrCodeImg">
-                <div class="qr-url">https://shuimui.szsmjr.com/index.html#/q</div>
-                <button class="close-btn" onclick="hideQRCode()">关闭</button>
+                <div class="qr-url">扫码直达：shuimui.szsmjr.com<br>也可点击下方按钮直接打开</div>
+                <div style="display:flex;gap:10px;justify-content:center;margin-top:16px;">
+                    <button class="close-btn" onclick="hideQRCode();openRealSite()" style="background:var(--gradient);color:#fff;font-weight:600;">🔗 打开水母报告</button>
+                    <button class="close-btn" onclick="hideQRCode()">关闭</button>
+                </div>
             </div>
         </div>
     </div>
