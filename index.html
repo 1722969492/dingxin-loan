@@ -73,7 +73,7 @@ section{padding:64px 0}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .service-card{background:#fff;border:1px solid #eee;border-radius:8px;padding:20px;transition:all .3s;cursor:pointer;position:relative}
 .service-card:hover{border-color:#2a66e7;box-shadow:0 4px 16px rgba(42,102,231,.08);transform:translateY(-2px)}
-.service-card .icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px}
+.service-card .icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
 .service-card .cat-tag{display:inline-block;font-size:11px;padding:1px 8px;background:rgba(42,102,231,.06);color:#2a66e7;border-radius:3px;margin-bottom:8px;font-weight:500}
 .service-card h3{font-size:15px;font-weight:700;color:#333;margin-bottom:6px}
 .service-card p{font-size:12px;color:#666;line-height:1.6;margin-bottom:10px}
@@ -85,10 +85,10 @@ section{padding:64px 0}
 
 /* Partners */
 .partners{background:#f5f7fa;padding:48px 0}
-.partner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
-.partner-item{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #e8e8e8;border-radius:6px;background:#fff;font-size:12px;font-weight:600;color:#333;transition:.3s}
-.partner-item:hover{border-color:#2a66e7;box-shadow:0 2px 8px rgba(42,102,231,.08);transform:translateY(-2px)}
-.partner-item .badge{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;flex-shrink:0}
+.partner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.partner-item{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px 10px;border:1px solid #e8e8e8;border-radius:8px;background:#fff;font-size:11px;font-weight:600;color:#555;transition:.3s;text-align:center}
+.partner-item:hover{border-color:#2a66e7;box-shadow:0 3px 12px rgba(42,102,231,.1);transform:translateY(-2px)}
+.partner-item .badge{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0;letter-spacing:-0.5px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
 
 /* Advantages */
 .advantages{background:#fff;padding:64px 0}
@@ -178,6 +178,7 @@ section{padding:64px 0}
   .hero .container,.about-grid,.contact-grid{grid-template-columns:1fr}
   .hero h1{font-size:28px}
   .services-grid,.adv-grid,.process-steps,.cases-grid{grid-template-columns:1fr 1fr}
+  .partner-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
   .hero-stats{gap:20px;flex-wrap:wrap}
   .process-steps::before{display:none}
   .nav-links{display:none}
