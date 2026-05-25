@@ -226,19 +226,22 @@ section{padding:64px 0}
     <div class="hero-visual">
       <div class="hero-card">
         <h3>📊 额度预估</h3>
+        <div style="display:flex;gap:8px;margin-bottom:14px;">
+          <button id="calcTypeP" class="btn" style="flex:1;padding:8px;font-size:13px;background:#2a66e7;color:#fff;border:none;border-radius:4px;font-weight:600;cursor:pointer" onclick="setCalcType('personal')">🙋 个人贷评估</button>
+          <button id="calcTypeB" class="btn" style="flex:1;padding:8px;font-size:13px;background:#fff;color:#666;border:1px solid #ddd;border-radius:4px;font-weight:600;cursor:pointer" onclick="setCalcType('business')">🏢 企业贷评估</button>
+        </div>
         <div class="slider-group">
-          <label>您的月收入 <span id="incomeVal">8,000元</span></label>
-          <input type="range" min="3000" max="50000" value="8000" step="1000" oninput="calcLoan(this.value)">
+          <label id="incomeLabel">您的月收入 <span id="incomeVal">8,000元</span></label>
+          <input type="range" min="3000" max="50000" value="8000" step="1000" id="incomeSlider" oninput="calcLoan()">
         </div>
         <div class="slider-group">
           <label>期望贷款金额 <span id="loanVal">30万</span></label>
-          <input type="range" min="5" max="500" value="30" step="5" oninput="calcLoan(document.getElementById('incomeSlider').value)" id="loanSlider">
-          <input type="hidden" id="incomeSlider">
+          <input type="range" min="5" max="500" value="30" step="5" id="loanSlider" oninput="calcLoan()">
         </div>
         <div class="result-box">
           <div class="amount" id="estResult">≈ 30万</div>
           <div class="label">预估可贷额度</div>
-          <div style="font-size:12px;color:#999;margin-top:6px;" id="estDetail">月供参考：≈ 5,280元/月 | 期限：12-60期 | 利率：0.35%-0.65%</div>
+          <div style="font-size:12px;color:#999;margin-top:6px;" id="estDetail">年化利率：3.5%-6.5% | 期限：12-60期</div>
         </div>
         <div style="margin-top:12px;font-size:11px;color:#bbb;text-align:center;">*以上为估算参考，实际以银行审批为准</div>
       </div>
@@ -427,21 +430,50 @@ section{padding:64px 0}
 
 <script>
 // ===== 额度计算器 =====
-function calcLoan(income) {
-  document.getElementById('incomeSlider').value = income;
-  document.getElementById('incomeVal').textContent = Number(income).toLocaleString() + '元';
-  var loan = document.getElementById('loanSlider').value;
-  document.getElementById('loanVal').textContent = loan + '万';
-  // Estimate based on income multiple
-  var base = Math.round(income * 0.4 * 36 / 10000);
-  var est = Math.min(Math.max(base, 5), 500);
-  document.getElementById('estResult').textContent = '≈ ' + est + '万';
+var calcType = 'personal';
+
+function setCalcType(type) {
+  calcType = type;
+  var pb = document.getElementById('calcTypeP');
+  var bb = document.getElementById('calcTypeB');
+  var label = document.getElementById('incomeLabel');
+  var slider = document.getElementById('incomeSlider');
+  if (type === 'personal') {
+    pb.style.background = '#2a66e7'; pb.style.color = '#fff'; pb.style.border = 'none';
+    bb.style.background = '#fff'; bb.style.color = '#666'; bb.style.border = '1px solid #ddd';
+    label.innerHTML = '您的月收入 <span id="incomeVal">8,000元</span>';
+    slider.min = 3000; slider.max = 50000; slider.value = 8000; slider.step = 1000;
+  } else {
+    bb.style.background = '#2a66e7'; bb.style.color = '#fff'; bb.style.border = 'none';
+    pb.style.background = '#fff'; pb.style.color = '#666'; pb.style.border = '1px solid #ddd';
+    label.innerHTML = '企业年营收 <span id="incomeVal">500万元</span>';
+    slider.min = 50; slider.max = 10000; slider.value = 500; slider.step = 50;
+  }
+  calcLoan();
 }
-calcLoan(8000);
+
+function calcLoan() {
+  var income = parseFloat(document.getElementById('incomeSlider').value);
+  var loan = parseFloat(document.getElementById('loanSlider').value);
+  document.getElementById('incomeVal').textContent = calcType === 'personal' ? Number(income).toLocaleString() + '元' : income + '万元';
+  document.getElementById('loanVal').textContent = loan + '万';
+  
+  var est, detail;
+  if (calcType === 'personal') {
+    est = Math.min(Math.max(Math.round(income * 0.4 * 36 / 10000), 5), 300);
+    detail = '年化利率：3.5%-6.5% | 期限：12-60期';
+  } else {
+    est = Math.min(Math.max(Math.round(income * 0.3 * 2), 10), 2000);
+    detail = '年化利率：3.0%-5.5% | 期限：1-5年';
+  }
+  document.getElementById('estResult').textContent = '≈ ' + est + '万';
+  document.getElementById('estDetail').textContent = detail;
+}
+calcLoan();
 
 // ===== 产品数据 =====
 var products = [
-  {id:'qyjy',cat:'贷款类',icon:'🏢',color:'#2a66e7',name:'企业经营贷款',desc:'含流动资金贷款、周转贷款、固定资产贷款、项目贷款、技改贷款等，为中小微企业提供全方位经营资金支持。',tags:['最高2000万','纯信用','3-5天放款'],
+  {id:'qyjy',cat:'贷款类',icon:'🏢',color:'#2a66e7',name:'企业经营贷款',desc:'含流动资金贷款、周转贷款、固定资产贷款、项目贷款、技改贷款等，为中小微企业提供全方位经营资金支持。',tags:['最高2000万','纯信用','3-5天放款'],hot:'★ 热门产品',
    detail:'企业经营贷款是指银行向企业发放的用于生产经营活动的贷款，包含流动资金贷款、周转贷款、固定资产贷款、项目贷款、技改贷款等多种类型。',
    amount:'最高2000万元',rate:'年利率3.5%起',term:'1-5年',feature:'纯信用/抵押均可，审批快，放款灵活',
    req:'企业注册满1年、正常经营、有持续经营流水、信用记录良好',doc:'营业执照、近6个月银行流水、经营场地证明、法人身份证、财务报表',
@@ -453,37 +485,37 @@ var products = [
    req:'年龄22-60周岁、有稳定收入来源、信用记录良好、有社保/公积金更佳',doc:'身份证、近6个月银行流水、工作证明/收入证明、社保/公积金记录',
    process:'提交申请→系统审批→签约→放款'},
 
-  {id:'sre',cat:'贷款类',icon:'📄',color:'#54aa6d',name:'税e融',desc:'基于企业纳税记录纯信用授信，纳税满1年即可申请，额度循环使用，随借随还，利率优惠。',tags:['最高2000万','纯信用','按日计息'],
+  {id:'sre',cat:'贷款类',icon:'📄',color:'#54aa6d',name:'税e融',desc:'基于企业纳税记录纯信用授信，纳税满1年即可申请，额度循环使用，随借随还，利率优惠。',tags:['最高2000万','纯信用','按日计息'],hot:'★ 热门产品',
    detail:'税e融是银行基于企业纳税记录推出的纯信用贷款产品，以企业纳税数据为核心授信依据，无需抵押担保。',
    amount:'最高2000万元',rate:'年利率4.0%起',term:'12个月，可循环',feature:'纯信用、按日计息、随借随还',
    req:'企业注册满1年、纳税评级A/B级、纳税记录正常',doc:'营业执照、纳税证明、法人身份证、近6个月纳税记录',
    process:'授权纳税数据→系统自动评估→签约→放款→随借随还'},
 
-  {id:'fpl',cat:'贷款类',icon:'💰',color:'#f0b017',name:'发票贷',desc:'基于企业开票数据的专属融资产品，额度最高5000万，线上申请极速审批，无需抵押，开票即贷。',tags:['最高5000万','开票评估','极速审批'],
+  {id:'fpl',cat:'贷款类',icon:'💰',color:'#f0b017',name:'发票贷',desc:'基于企业开票数据的专属融资产品，额度最高5000万，线上申请极速审批，无需抵押，开票即贷。',tags:['最高5000万','开票评估','极速审批'],hot:'★ 热门产品',
    detail:'发票贷是基于企业开票数据的专项融资产品，通过分析企业开票金额、开票频率、开票客户质量等数据进行授信。',
    amount:'最高5000万元',rate:'年利率4.5%起',term:'6-36个月',feature:'无需抵押、线上申请、极速审批',
    req:'企业注册满1年、有持续开票记录、开票金额稳定',doc:'营业执照、近12个月开票记录、法人身份证、经营场地证明',
    process:'授权开票数据→系统评估→审批→签约→放款'},
 
-  {id:'fcdy',cat:'贷款类',icon:'🏠',color:'#2a66e7',name:'房产抵押贷款',desc:'自有房产抵押融资，额度高、利率低、期限长，可用于经营周转或大额消费。',tags:['最高2000万','年利率3.0%起','最长20年'],
+  {id:'fcdy',cat:'贷款类',icon:'🏠',color:'#2a66e7',name:'房产抵押贷款',desc:'自有房产抵押融资，额度高、利率低、期限长，可用于经营周转或大额消费。',tags:['最高2000万','年利率3.0%起','最长20年'],hot:'★ 热门产品',
    detail:'房产抵押贷款是以自有房产作为抵押物向银行申请的贷款，额度高、利率低、期限长，适合大额资金需求。',
    amount:'最高2000万元',rate:'年利率3.0%起',term:'最长20年',feature:'额度高、利率低、期限长',
    req:'有自有房产、产权清晰、评估价值充足、有还款来源',doc:'房产证、身份证、收入证明、评估报告、婚姻证明',
    process:'房产评估→提交材料→银行审批→签订合同→办理抵押→放款'},
 
-  {id:'kjcx',cat:'贷款类',icon:'🔬',color:'#54aa6d',name:'科技创新贷',desc:'面向高新技术企业、专精特新、科技型中小企业的专属融资，支持知识产权质押、股权质押。',tags:['最高3000万','贴息支持','科技专属'],
+  {id:'kjcx',cat:'贷款类',icon:'🔬',color:'#54aa6d',name:'科技创新贷',desc:'面向高新技术企业、专精特新、科技型中小企业的专属融资，支持知识产权质押、股权质押。',tags:['最高3000万','贴息支持','科技专属'],hot:'★ 热门产品',
    detail:'科技创新贷是面向高新技术企业、专精特新企业、科技型中小企业的专属融资产品，支持知识产权质押、股权质押等创新担保方式，享受政府贴息。',
    amount:'最高3000万元',rate:'年利率3.5%起，可贴息',term:'1-3年',feature:'科技专属、贴息支持、多种质押',
    req:'高新技术企业/专精特新/科技型中小企业资质',doc:'营业执照、资质证书、知识产权证明、财务报表、项目计划书',
    process:'提交申请→资质审核→评估授信→签约→放款'},
 
-  {id:'cydb',cat:'政策性产品',icon:'🎓',color:'#2a66e7',name:'创业担保贷款',desc:'政府贴息支持的创业贷款，为初创企业和小微创业者提供低成本启动资金，最高可享财政全额贴息。',tags:['最高50万','财政贴息','免抵押'],
+  {id:'cydb',cat:'政策性产品',icon:'🎓',color:'#2a66e7',name:'创业担保贷款',desc:'政府贴息支持的创业贷款，为初创企业和小微创业者提供低成本启动资金，最高可享财政全额贴息。',tags:['最高50万','财政贴息','免抵押'],hot:'★ 热门产品',
    detail:'创业担保贷款是政府贴息支持的专项创业贷款产品，为初创企业和小微创业者提供低成本的启动资金。',
    amount:'最高50万元',rate:'财政贴息，低至0利率',term:'最长3年',feature:'财政贴息、免抵押、创业扶持',
    req:'创业项目可行、领取营业执照、有固定的经营场所',doc:'营业执照、创业计划书、身份证明、经营场所证明',
    process:'申请→人社审核→银行审批→担保确认→放款'},
 
-  {id:'fmcy',cat:'政策性产品',icon:'🎓',color:'#f0b017',name:'富民创业贷',desc:'面向创业者和初创企业的政策贴息贷款产品，助力创业就业，享受财政贴息支持。',tags:['最高50万','财政贴息','免抵押'],
+  {id:'fmcy',cat:'政策性产品',icon:'🎓',color:'#f0b017',name:'富民创业贷',desc:'面向创业者和初创企业的政策贴息贷款产品，助力创业就业，享受财政贴息支持。',tags:['最高50万','财政贴息','免抵押'],hot:'★ 热门产品',
    detail:'富民创业贷是政府为支持创业就业推出的政策性贷款产品，面向创业者和初创企业，享受财政贴息。',
    amount:'最高50万元',rate:'财政贴息',term:'1-3年',feature:'创业扶持、财政贴息、审批快',
    req:'创业项目、营业执照、有经营场所',doc:'营业执照、法人身份证、创业计划书、经营场所证明',
