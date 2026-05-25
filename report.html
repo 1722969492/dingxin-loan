@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>水母报告 — 默裕企服 · 企业信用查询</title>
+    <meta name="description" content="默裕企服 · 企业水母报告查询 — 输入企业名称或信用代码，一键查询企业信用报告。另提供开票信用评估，额度最高500万。">
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <style>
+        /* ===== 重置 & 变量（沿用默裕企服品牌色） ===== */
+        :root {
+            --primary: #1a56db;
+            --primary-dark: #1340a0;
+            --primary-light: #3b82f6;
+            --accent: #f59e0b;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --bg-dark: #0f172a;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --gradient: linear-gradient(135deg, #1a56db 0%, #1e40af 100%);
+            --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,.12);
+            --radius: 12px;
+            --max-w: 480px;
+            --transition: .3s cubic-bezier(.4,0,.2,1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(180deg, #1a56db 0%, #1e40af 100%);
+            min-height: 100vh;
+            color: var(--text);
+        }
+        a { color: var(--primary); text-decoration: none; }
+
+        /* ===== 顶部导航 ===== */
+        .top-bar {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .top-bar-inner {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+        }
+        .top-bar .site-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+        }
+        .top-bar .site-name .badge {
+            background: rgba(255,255,255,0.15);
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .top-bar .back-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: rgba(255,255,255,0.8);
+            font-size: 13px;
+            transition: var(--transition);
+        }
+        .top-bar .back-link:hover { color: #fff; }
+
+        /* ===== 主容器 ===== */
+        .main-container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 16px 16px 30px;
+        }
+
+        /* ===== Tab 切换 ===== */
+        .tab-bar {
+            display: flex;
+            background: rgba(255,255,255,0.15);
+            border-radius: 14px;
+            padding: 4px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(6px);
+        }
+        .tab-bar .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 11px;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+        .tab-bar .tab.active {
+            background: #fff;
+            color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* ===== 搜索卡片 ===== */
+        .search-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px 20px 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            margin-bottom: 16px;
+        }
+        .search-card .title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .search-card .subtitle {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+        .search-card .subtitle i { font-style: normal; background: #f0f8ff; color: var(--primary); padding: 1px 6px; border-radius: 4px; }
+        .search-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .search-input-group input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .search-input-group input:focus { border-color: var(--primary); }
+        .search-input-group input::placeholder { color: #bbb; }
+        .search-btn {
+            padding: 12px 24px;
+            background: var(--gradient);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .search-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(26,86,219,0.3); }
+        .search-btn:active { transform: translateY(0); }
+        .search-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        /* ===== 快捷操作 ===== */
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .quick-actions .action-btn {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            background: #fff;
+            border-radius: 14px;
+            padding: 14px 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-family: inherit;
+        }
+        .quick-actions .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .quick-actions .action-btn .icon { font-size: 28px; }
+        .quick-actions .action-btn .label { font-size: 12px; color: #666; }
+
+        /* ===== 示例标签 ===== */
+        .example-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .example-tags .tag {
+            padding: 4px 12px;
+            background: #f0f8ff;
+            border-radius: 14px;
+            font-size: 12px;
+            color: var(--primary);
+            cursor: pointer;
+            border: 1px solid #d6e8ff;
+            transition: all 0.2s;
+        }
+        .example-tags .tag:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+        /* ===== Loading ===== */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        .loading.show { display: block; }
+        .loading .spinner {
+            width: 32px; height: 32px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 8px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading .text { font-size: 13px; color: var(--text-light); }
+
+        /* ===== 查询结果 ===== */
+        .result-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            display: none;
+            margin-bottom: 16px;
+        }
+        .result-card.show { display: block; }
+        .result-card .company-name { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+        .result-card .company-info { font-size: 12px; color: var(--text-light); margin-bottom: 14px; }
+        .result-card .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .result-card .info-item {
+            background: var(--bg-alt);
+            border-radius: 10px;
+            padding: 12px;
+        }
+        .result-card .info-item .label { font-size: 11px; color: var(--text-light); margin-bottom: 4px; }
+        .result-card .info-item .value { font-size: 15px; font-weight: 600; color: var(--text); }
+        .result-card .info-item .value.highlight { color: #ff4d4f; }
+        .result-card .info-item .value.green { color: #52c41a; }
+        .result-card .info-item .value.credit { color: var(--primary); font-size: 22px; }
+
+        /* ===== 扫码弹窗 ===== */
+        .qr-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+        .qr-modal.show { display: flex; }
+        .qr-modal .qr-box {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .qr-modal .qr-box h3 { font-size: 16px; color: var(--text); margin-bottom: 6px; }
+        .qr-modal .qr-box p { font-size: 12px; color: var(--text-light); margin-bottom: 20px; }
+        .qr-modal .qr-box #qrcode { display: inline-block; padding: 12px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .qr-modal .qr-box .close-btn {
+            margin-top: 20px;
+            padding: 10px 40px;
+            background: #f5f5f5;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+        }
+        .qr-modal .qr-box .close-btn:hover { background: #eee; }
+
+        /* ===== 移动端提示 ===== */
+        .mobile-qr-tip {
+            display: none;
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            margin-bottom: 16px;
+        }
+        .mobile-qr-tip.show { display: block; }
+        .mobile-qr-tip .tip-icon { font-size: 40px; margin-bottom: 8px; }
+        .mobile-qr-tip .tip-text { font-size: 14px; color: #666; }
+
+        /* ===== 额度评估卡片 ===== */
+        .credit-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            margin-bottom: 16px;
+        }
+        .credit-card .title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .credit-card .subtitle {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+        .credit-amount {
+            text-align: center;
+            padding: 20px 0;
+            background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        .credit-amount .label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        .credit-amount .amount {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .credit-amount .amount .unit { font-size: 16px; font-weight: 600; }
+        .credit-amount .tags {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .credit-amount .tags span {
+            font-size: 11px;
+            padding: 2px 10px;
+            border-radius: 10px;
+            background: #e6f7ff;
+            color: var(--primary);
+        }
+        .credit-card .invoice-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .credit-card .invoice-form .form-row {
+            display: flex;
+            gap: 10px;
+        }
+        .credit-card .invoice-form .form-row input,
+        .credit-card .invoice-form .form-row select {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .credit-card .invoice-form .form-row input:focus,
+        .credit-card .invoice-form .form-row select:focus { border-color: var(--primary); }
+        .credit-card .evaluate-btn {
+            padding: 14px;
+            background: var(--gradient-accent);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 4px;
+        }
+        .credit-card .evaluate-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        /* ===== 额度结果详细 ===== */
+        .credit-detail {
+            display: none;
+            margin-top: 16px;
+            padding: 16px;
+            background: var(--bg-alt);
+            border-radius: 12px;
+            border: 1px solid #e8f0fe;
+        }
+        .credit-detail.show { display: block; }
+        .credit-detail .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border);
+            font-size: 13px;
+        }
+        .credit-detail .detail-row:last-child { border-bottom: none; }
+        .credit-detail .detail-row .dlabel { color: var(--text-light); }
+        .credit-detail .detail-row .dvalue { color: var(--text); font-weight: 600; }
+        .credit-detail .detail-row .dvalue.high { color: #ff4d4f; font-size: 16px; }
+
+        /* ===== 额度速算表 ===== */
+        .credit-table-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            margin-bottom: 16px;
+        }
+        .credit-table-card .title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+        .credit-table-card table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .credit-table-card th {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-alt);
+            font-weight: 600;
+            color: var(--text-light);
+        }
+        .credit-table-card th:last-child { text-align: right; }
+        .credit-table-card td {
+            padding: 8px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .credit-table-card td:last-child { text-align: right; color: var(--primary); font-weight: 600; }
+
+        /* ===== 提示条 ===== */
+        .demo-notice {
+            background: #fff3e0;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 12px;
+            color: #e65100;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ===== 底部 ===== */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255,255,255,0.4);
+            font-size: 12px;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 500px) {
+            .main-container { padding: 12px 12px 20px; }
+            .search-card { border-radius: 14px; padding: 18px 16px; }
+            .credit-amount .amount { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== 顶部导航 ===== -->
+<div class="top-bar">
+    <div class="top-bar-inner">
+        <div class="site-name">
+            📋 水母报告
+            <span class="badge">默裕企服</span>
+        </div>
+        <a href="/dingxin-loan/" class="back-link">← 返回首页</a>
+    </div>
+</div>
+
+<!-- ===== 主体 ===== -->
+<div class="main-container">
+
+    <!-- Tab 切换 -->
+    <div class="tab-bar">
+        <button class="tab active" onclick="switchTab('query')">📋 报告查询</button>
+        <button class="tab" onclick="switchTab('credit')">💰 开票评估</button>
+    </div>
+
+    <!-- ===== Tab: 报告查询 ===== -->
+    <div id="tab-query">
+        <div class="quick-actions">
+            <button class="action-btn" onclick="showQRCode()">
+                <div class="icon">📱</div>
+                <div class="label">扫码查询</div>
+            </button>
+            <button class="action-btn" onclick="showMobileTip()">
+                <div class="icon">🔍</div>
+                <div class="label">手机查询</div>
+            </button>
+            <button class="action-btn" onclick="queryExample('上海华为技术有限公司')">
+                <div class="icon">📌</div>
+                <div class="label">示例查询</div>
+            </button>
+        </div>
+
+        <div class="search-card">
+            <div class="title">🔍 企业水母报告查询</div>
+            <div class="subtitle">输入企业名称或统一社会信用代码，一键查询企业信用报告</div>
+
+            <div class="example-tags">
+                <span class="tag" onclick="queryExample('上海华为技术有限公司')">华为</span>
+                <span class="tag" onclick="queryExample('阿里巴巴（中国）有限公司')">阿里巴巴</span>
+                <span class="tag" onclick="queryExample('腾讯科技（深圳）有限公司')">腾讯</span>
+                <span class="tag" onclick="queryExample('上海寻梦信息技术有限公司')">拼多多</span>
+            </div>
+
+            <div class="search-input-group">
+                <input type="text" id="searchInput" placeholder="输入企业名称 / 统一信用代码" onkeydown="if(event.key==='Enter')doSearch()">
+                <button class="search-btn" id="searchBtn" onclick="doSearch()">查询</button>
+            </div>
+
+            <div class="loading" id="searchLoading">
+                <div class="spinner"></div>
+                <div class="text">查询中，请稍候...</div>
+            </div>
+        </div>
+
+        <div class="mobile-qr-tip" id="mobileTip">
+            <div class="tip-icon">📱</div>
+            <div class="tip-text">请在手机浏览器中打开本页面，或扫描页面二维码访问</div>
+            <div id="qrcodeMobile" style="display:inline-block;margin-top:12px;padding:8px;background:#fff;border-radius:8px;"></div>
+        </div>
+
+        <div class="result-card" id="resultCard">
+            <div class="company-name" id="companyName">—</div>
+            <div class="company-info" id="companyInfo">统一社会信用代码：—</div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="label">法定代表人</div>
+                    <div class="value" id="legalPerson">—</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">注册资本</div>
+                    <div class="value" id="regCapital">—</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">成立日期</div>
+                    <div class="value" id="establishDate">—</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">经营状态</div>
+                    <div class="value green" id="operateStatus">—</div>
+                </div>
+                <div class="info-item" style="grid-column: span 2;">
+                    <div class="label">企业地址</div>
+                    <div class="value" id="companyAddr" style="font-size:13px;">—</div>
+                </div>
+            </div>
+            <div style="margin-top:14px;text-align:center;">
+                <button class="search-btn" style="width:100%;" onclick="switchTab('credit')">查看信用额度 →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Tab: 开票评估 ===== -->
+    <div id="tab-credit" style="display:none;">
+        <div class="demo-notice">
+            <span>💡</span>
+            <span>基于企业开票数据评估信用额度，额度更高、审批更快</span>
+        </div>
+
+        <div class="credit-card">
+            <div class="title">💰 企业开票信用评估</div>
+            <div class="subtitle">输入企业开票数据，系统自动评估可贷额度（最高 <strong style="color:#ff4d4f;">500万</strong>）</div>
+
+            <div class="credit-amount" id="creditDisplay">
+                <div class="label">预估可贷额度</div>
+                <div class="amount" id="creditAmount">—<span class="unit"> 万元</span></div>
+                <div class="tags">
+                    <span>⚡ 极速审批</span>
+                    <span>📄 无需抵押</span>
+                    <span>🏦 银行直贷</span>
+                </div>
+            </div>
+
+            <div class="invoice-form">
+                <div class="form-row">
+                    <input type="text" id="invoiceCompany" placeholder="企业名称">
+                </div>
+                <div class="form-row">
+                    <input type="number" id="invoiceAmount" placeholder="年开票金额（万元）" min="0" style="flex:2">
+                    <input type="number" id="invoiceCount" placeholder="开票数量（张）" min="0" style="flex:1">
+                </div>
+                <div class="form-row">
+                    <select id="invoiceIndustry" style="flex:1">
+                        <option value="">选择行业</option>
+                        <option value="tech">科技/信息技术</option>
+                        <option value="manufacture">制造业</option>
+                        <option value="trade">贸易/批发零售</option>
+                        <option value="service">服务业</option>
+                        <option value="construction">建筑业</option>
+                        <option value="food">餐饮/食品</option>
+                        <option value="logistics">物流/运输</option>
+                        <option value="other">其他</option>
+                    </select>
+                    <select id="invoiceYear" style="flex:1">
+                        <option value="2026">2026年</option>
+                        <option value="2025" selected>2025年</option>
+                        <option value="2024">2024年</option>
+                        <option value="2023">2023年</option>
+                    </select>
+                </div>
+                <button class="evaluate-btn" onclick="evaluateCredit()">🚀 立即评估额度</button>
+            </div>
+
+            <div class="credit-detail" id="creditDetail">
+                <div class="detail-row">
+                    <span class="dlabel">企业名称</span>
+                    <span class="dvalue" id="detailName">—</span>
+                </div>
+                <div class="detail-row">
+                    <span class="dlabel">年开票金额</span>
+                    <span class="dvalue" id="detailAmount">—</span>
+                </div>
+                <div class="detail-row">
+                    <span class="dlabel">开票质量评分</span>
+                    <span class="dvalue" id="detailScore">—</span>
+                </div>
+                <div class="detail-row">
+                    <span class="dlabel">行业系数</span>
+                    <span class="dvalue" id="detailIndustry">—</span>
+                </div>
+                <div class="detail-row">
+                    <span class="dlabel">基础额度</span>
+                    <span class="dvalue" id="detailBase">—</span>
+                </div>
+                <div class="detail-row">
+                    <span class="dlabel">📋 最终可贷额度</span>
+                    <span class="dvalue high" id="detailFinal">—</span>
+                </div>
+                <div style="margin-top:12px;padding:10px;background:#fff3e0;border-radius:8px;font-size:12px;color:#e65100;">
+                    ⚡ 本平台接入多家银行及持牌金融机构，额度仅供参考，实际以审批结果为准
+                </div>
+            </div>
+        </div>
+
+        <div class="credit-table-card">
+            <div class="title">📊 开票额度速算参考</div>
+            <table>
+                <tr><th>年开票金额</th><th>预估额度</th></tr>
+                <tr><td>50-100 万</td><td>10-30 万</td></tr>
+                <tr><td>100-300 万</td><td>30-80 万</td></tr>
+                <tr><td>300-500 万</td><td>80-150 万</td></tr>
+                <tr><td>500-1000 万</td><td>150-300 万</td></tr>
+                <tr><td>1000 万以上</td><td style="color:#ff4d4f;font-weight:700;">300-500 万</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+        默裕企服 · 水母报告查询 · 数据来源于公开信息<br>
+        仅供企业信用参考，不构成投资建议
+    </div>
+</div>
+
+<!-- ===== 扫码弹窗 ===== -->
+<div class="qr-modal" id="qrModal">
+    <div class="qr-box">
+        <h3>📱 手机扫码查询</h3>
+        <p>使用手机扫描下方二维码，随时随地查询企业信用报告</p>
+        <div id="qrcodeModal"></div>
+        <div style="margin-top:12px;font-size:13px;color:#666;" id="qrUrlDisplay"></div>
+        <button class="close-btn" onclick="hideQRCode()">关闭</button>
+    </div>
+</div>
+
+<script>
+// ===================== Tab 切换 =====================
+function switchTab(tab) {
+    const qTab = document.getElementById('tab-query');
+    const cTab = document.getElementById('tab-credit');
+    const tabs = document.querySelectorAll('.tab');
+    if (tab === 'query') {
+        qTab.style.display = 'block';
+        cTab.style.display = 'none';
+        tabs[0].classList.add('active');
+        tabs[1].classList.remove('active');
+    } else {
+        qTab.style.display = 'none';
+        cTab.style.display = 'block';
+        tabs[0].classList.remove('active');
+        tabs[1].classList.add('active');
+    }
+}
+
+// ===================== QR 码 =====================
+let qrModalInstance = null;
+let qrMobileInstance = null;
+
+function showQRCode() {
+    document.getElementById('qrModal').classList.add('show');
+    const url = window.location.href;
+    document.getElementById('qrUrlDisplay').textContent = url;
+    setTimeout(() => {
+        const c = document.getElementById('qrcodeModal');
+        c.innerHTML = '';
+        qrModalInstance = new QRCode(c, { text: url, width: 180, height: 180, correctLevel: QRCode.CorrectLevel.H });
+    }, 100);
+}
+function hideQRCode() { document.getElementById('qrModal').classList.remove('show'); }
+document.getElementById('qrModal').addEventListener('click', function(e) { if (e.target === this) hideQRCode(); });
+
+function showMobileTip() {
+    const tip = document.getElementById('mobileTip');
+    tip.classList.toggle('show');
+    if (!qrMobileInstance) {
+        setTimeout(() => {
+            const c = document.getElementById('qrcodeMobile');
+            c.innerHTML = '';
+            qrMobileInstance = new QRCode(c, { text: window.location.href, width: 150, height: 150, correctLevel: QRCode.CorrectLevel.H });
+        }, 100);
+    }
+}
+
+// ===================== 企业查询 =====================
+const MOCK_DATA = {
+    '上海华为技术有限公司': {
+        name: '上海华为技术有限公司',
+        creditCode: '91310000MA1FL1MF4D',
+        legalPerson: '赵明路',
+        capital: '10000 万元人民币',
+        establishDate: '2001-01-16',
+        status: '存续（在营）',
+        address: '上海市浦东新区新金桥路2222号'
+    },
+    '阿里巴巴（中国）有限公司': {
+        name: '阿里巴巴（中国）有限公司',
+        creditCode: '91330100799China01',
+        legalPerson: '吴泳铭',
+        capital: '23000 万美元',
+        establishDate: '2007-03-26',
+        status: '存续（在营）',
+        address: '浙江省杭州市余杭区文一西路969号'
+    },
+    '腾讯科技（深圳）有限公司': {
+        name: '腾讯科技（深圳）有限公司',
+        creditCode: '914403007087205113',
+        legalPerson: '马化腾',
+        capital: '65000 万元人民币',
+        establishDate: '2000-02-24',
+        status: '存续（在营）',
+        address: '深圳市南山区粤海街道麻岭社区科技中一路腾讯大厦'
+    },
+    '上海寻梦信息技术有限公司': {
+        name: '上海寻梦信息技术有限公司',
+        creditCode: '913101143013433578',
+        legalPerson: '赵佳臻',
+        capital: '1000 万元人民币',
+        establishDate: '2014-01-09',
+        status: '存续（在营）',
+        address: '上海市长宁区娄山关路533号'
+    }
+};
+
+function doSearch() {
+    const input = document.getElementById('searchInput').value.trim();
+    if (!input) {
+        document.getElementById('searchInput').style.borderColor = '#ff4d4f';
+        setTimeout(() => document.getElementById('searchInput').style.borderColor = '#e2e8f0', 1500);
+        return;
+    }
+    const btn = document.getElementById('searchBtn');
+    const loading = document.getElementById('searchLoading');
+    const result = document.getElementById('resultCard');
+    btn.disabled = true;
+    btn.textContent = '查询中...';
+    loading.classList.add('show');
+    result.classList.remove('show');
+
+    setTimeout(() => {
+        let data = null;
+        for (const [key, val] of Object.entries(MOCK_DATA)) {
+            if (input.includes(key.slice(0, 4)) || key.includes(input.slice(0, 4))) {
+                data = val; break;
+            }
+        }
+        for (const val of Object.values(MOCK_DATA)) {
+            if (val.creditCode === input) { data = val; break; }
+        }
+        if (!data) {
+            data = {
+                name: input,
+                creditCode: '91' + String(Math.random()).slice(2, 16),
+                legalPerson: '—',
+                capital: '查询中...',
+                establishDate: '—',
+                status: '存续（在营）',
+                address: '—'
+            };
+        }
+        document.getElementById('companyName').textContent = data.name;
+        document.getElementById('companyInfo').textContent = '统一社会信用代码：' + data.creditCode;
+        document.getElementById('legalPerson').textContent = data.legalPerson;
+        document.getElementById('regCapital').textContent = data.capital;
+        document.getElementById('establishDate').textContent = data.establishDate;
+        document.getElementById('operateStatus').textContent = data.status;
+        document.getElementById('companyAddr').textContent = data.address;
+        loading.classList.remove('show');
+        result.classList.add('show');
+        btn.disabled = false;
+        btn.textContent = '查询';
+    }, 1500);
+}
+
+function queryExample(name) {
+    document.getElementById('searchInput').value = name;
+    doSearch();
+}
+
+// ===================== 开票评估 =====================
+function evaluateCredit() {
+    const company = document.getElementById('invoiceCompany').value.trim() || '未命名企业';
+    const year = document.getElementById('invoiceYear').value;
+    const industry = document.getElementById('invoiceIndustry').value;
+    const amount = parseFloat(document.getElementById('invoiceAmount').value) || 0;
+    const count = parseInt(document.getElementById('invoiceCount').value) || 0;
+
+    if (amount <= 0) {
+        document.getElementById('invoiceAmount').style.borderColor = '#ff4d4f';
+        setTimeout(() => document.getElementById('invoiceAmount').style.borderColor = '#e2e8f0', 1500);
+        return;
+    }
+
+    const industryCoeff = { 'tech': 1.5, 'manufacture': 1.3, 'trade': 1.2, 'service': 1.1, 'construction': 1.0, 'food': 0.9, 'logistics': 1.1, 'other': 1.0 };
+    const coeff = industryCoeff[industry] || 1.0;
+
+    const avgInvoice = amount / Math.max(count, 1);
+    let qualityScore = 60;
+    if (count > 0) {
+        if (avgInvoice > 10) qualityScore = 95;
+        else if (avgInvoice > 5) qualityScore = 85;
+        else if (avgInvoice > 2) qualityScore = 75;
+        else qualityScore = 65;
+    }
+    if (count > 50) qualityScore += 5;
+    if (count > 200) qualityScore += 10;
+
+    const qualityFactor = qualityScore / 100;
+    let baseCredit = amount * coeff * qualityFactor * 0.6;
+    let finalCredit = Math.round(baseCredit * 100) / 100;
+    if (finalCredit > 500) finalCredit = 500;
+
+    const industryNames = { 'tech': '科技/信息技术', 'manufacture': '制造业', 'trade': '贸易/批发零售', 'service': '服务业', 'construction': '建筑业', 'food': '餐饮/食品', 'logistics': '物流/运输', 'other': '其他' };
+
+    let displayAmount = finalCredit;
+    if (displayAmount >= 50) displayAmount = Math.round(displayAmount * 1.15);
+    else if (displayAmount > 0) displayAmount = Math.round(displayAmount * 1.3);
+    if (displayAmount > 500) displayAmount = 500;
+
+    document.getElementById('creditAmount').innerHTML = displayAmount + '<span class="unit"> 万元</span>';
+    document.getElementById('detailName').textContent = company;
+    document.getElementById('detailAmount').textContent = amount + ' 万元 / ' + count + ' 张';
+    document.getElementById('detailScore').textContent = qualityScore + ' 分';
+    document.getElementById('detailIndustry').textContent = (industryNames[industry] || '其他') + ' (×' + coeff + ')';
+    document.getElementById('detailBase').textContent = finalCredit.toFixed(2) + ' 万元';
+    document.getElementById('detailFinal').textContent = displayAmount + ' 万元';
+    document.getElementById('creditDetail').classList.add('show');
+    document.getElementById('creditDetail').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
+</body>
+</html>
