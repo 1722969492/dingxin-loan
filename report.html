@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>水母报告 — 默裕企服 · 企业信用查询</title>
-    <meta name="description" content="默裕企服 · 企业水母报告查询 — 输入企业名称或信用代码，一键查询企业信用报告。另提供开票信用评估，额度最高500万。">
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <meta name="description" content="默裕企服 · 企业水母报告查询，对接真实数据源，输入企业名称或信用代码一键查询企业信用报告。开票信用评估，额度最高500万。">
     <style>
-        /* ===== 重置 & 变量（沿用默裕企服品牌色） ===== */
         :root {
             --primary: #1a56db;
             --primary-dark: #1340a0;
@@ -80,14 +78,12 @@
         }
         .top-bar .back-link:hover { color: #fff; }
 
-        /* ===== 主容器 ===== */
         .main-container {
             max-width: 480px;
             margin: 0 auto;
             padding: 16px 16px 30px;
         }
 
-        /* ===== Tab 切换 ===== */
         .tab-bar {
             display: flex;
             background: rgba(255,255,255,0.15);
@@ -116,6 +112,78 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
+        /* ===== 对接说明条 ===== */
+        .data-source-bar {
+            background: #fff;
+            border-radius: 14px;
+            padding: 14px 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .data-source-bar .logo-icon {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, #04b8f5, #0361e7);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; color: #fff; font-weight: bold;
+            flex-shrink: 0;
+        }
+        .data-source-bar .info { flex: 1; }
+        .data-source-bar .info .title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .data-source-bar .info .desc {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+        .data-source-bar .go-btn {
+            padding: 8px 18px;
+            background: var(--gradient);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+        .data-source-bar .go-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26,86,219,.3);
+        }
+
+        /* ===== 快捷操作 ===== */
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .quick-actions .action-btn {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            background: #fff;
+            border-radius: 14px;
+            padding: 14px 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-family: inherit;
+        }
+        .quick-actions .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .quick-actions .action-btn .icon { font-size: 28px; }
+        .quick-actions .action-btn .label { font-size: 12px; color: #666; }
+
         /* ===== 搜索卡片 ===== */
         .search-card {
             background: #fff;
@@ -138,7 +206,6 @@
             color: var(--text-light);
             margin-bottom: 16px;
         }
-        .search-card .subtitle i { font-style: normal; background: #f0f8ff; color: var(--primary); padding: 1px 6px; border-radius: 4px; }
         .search-input-group {
             display: flex;
             gap: 10px;
@@ -171,92 +238,6 @@
         .search-btn:active { transform: translateY(0); }
         .search-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-        /* ===== 快捷操作 ===== */
-        .quick-actions {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-        .quick-actions .action-btn {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            background: #fff;
-            border-radius: 14px;
-            padding: 14px 10px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: all 0.2s;
-            border: none;
-            font-family: inherit;
-        }
-        .quick-actions .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-        .quick-actions .action-btn .icon { font-size: 28px; }
-        .quick-actions .action-btn .label { font-size: 12px; color: #666; }
-
-        /* ===== 示例标签 ===== */
-        .example-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 12px;
-        }
-        .example-tags .tag {
-            padding: 4px 12px;
-            background: #f0f8ff;
-            border-radius: 14px;
-            font-size: 12px;
-            color: var(--primary);
-            cursor: pointer;
-            border: 1px solid #d6e8ff;
-            transition: all 0.2s;
-        }
-        .example-tags .tag:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-
-        /* ===== Loading ===== */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 20px;
-        }
-        .loading.show { display: block; }
-        .loading .spinner {
-            width: 32px; height: 32px;
-            border: 3px solid var(--border);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 8px;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .loading .text { font-size: 13px; color: var(--text-light); }
-
-        /* ===== 查询结果 ===== */
-        .result-card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-            display: none;
-            margin-bottom: 16px;
-        }
-        .result-card.show { display: block; }
-        .result-card .company-name { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-        .result-card .company-info { font-size: 12px; color: var(--text-light); margin-bottom: 14px; }
-        .result-card .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .result-card .info-item {
-            background: var(--bg-alt);
-            border-radius: 10px;
-            padding: 12px;
-        }
-        .result-card .info-item .label { font-size: 11px; color: var(--text-light); margin-bottom: 4px; }
-        .result-card .info-item .value { font-size: 15px; font-weight: 600; color: var(--text); }
-        .result-card .info-item .value.highlight { color: #ff4d4f; }
-        .result-card .info-item .value.green { color: #52c41a; }
-        .result-card .info-item .value.credit { color: var(--primary); font-size: 22px; }
-
         /* ===== 扫码弹窗 ===== */
         .qr-modal {
             display: none;
@@ -272,15 +253,31 @@
             background: #fff;
             border-radius: 20px;
             padding: 30px;
-            width: 320px;
+            width: 340px;
             text-align: center;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
         .qr-modal .qr-box h3 { font-size: 16px; color: var(--text); margin-bottom: 6px; }
-        .qr-modal .qr-box p { font-size: 12px; color: var(--text-light); margin-bottom: 20px; }
-        .qr-modal .qr-box #qrcode { display: inline-block; padding: 12px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .qr-modal .qr-box p { font-size: 12px; color: var(--text-light); margin-bottom: 16px; }
+        .qr-modal .qr-box .qr-img {
+            width: 200px; height: 200px;
+            object-fit: contain;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            margin: 0 auto;
+            display: block;
+        }
+        .qr-modal .qr-box .qr-url {
+            margin-top: 12px;
+            font-size: 12px;
+            color: var(--text-light);
+            word-break: break-all;
+            background: var(--bg-alt);
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
         .qr-modal .qr-box .close-btn {
-            margin-top: 20px;
+            margin-top: 16px;
             padding: 10px 40px;
             background: #f5f5f5;
             border: none;
@@ -291,19 +288,37 @@
         }
         .qr-modal .qr-box .close-btn:hover { background: #eee; }
 
-        /* ===== 移动端提示 ===== */
-        .mobile-qr-tip {
-            display: none;
+        /* ===== 直接跳转提示 ===== */
+        .redirect-card {
             background: #fff;
             border-radius: 16px;
             padding: 20px;
-            text-align: center;
             box-shadow: 0 8px 32px rgba(0,0,0,0.12);
             margin-bottom: 16px;
+            text-align: center;
         }
-        .mobile-qr-tip.show { display: block; }
-        .mobile-qr-tip .tip-icon { font-size: 40px; margin-bottom: 8px; }
-        .mobile-qr-tip .tip-text { font-size: 14px; color: #666; }
+        .redirect-card .big-icon { font-size: 48px; margin-bottom: 12px; }
+        .redirect-card h3 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+        .redirect-card p { font-size: 13px; color: var(--text-light); margin-bottom: 16px; }
+        .redirect-card .open-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 36px;
+            background: var(--gradient);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .redirect-card .open-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26,86,219,.4);
+        }
+        .redirect-card .open-btn:active { transform: translateY(0); }
 
         /* ===== 额度评估卡片 ===== */
         .credit-card {
@@ -334,16 +349,8 @@
             border-radius: 12px;
             margin-bottom: 16px;
         }
-        .credit-amount .label {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 4px;
-        }
-        .credit-amount .amount {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--primary);
-        }
+        .credit-amount .label { font-size: 12px; color: #666; margin-bottom: 4px; }
+        .credit-amount .amount { font-size: 36px; font-weight: 800; color: var(--primary); }
         .credit-amount .amount .unit { font-size: 16px; font-weight: 600; }
         .credit-amount .tags {
             display: flex;
@@ -393,10 +400,8 @@
         }
         .credit-card .evaluate-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            box-shadow: 0 4px 15px rgba(245,158,11,.3);
         }
-
-        /* ===== 额度结果详细 ===== */
         .credit-detail {
             display: none;
             margin-top: 16px;
@@ -418,7 +423,6 @@
         .credit-detail .detail-row .dvalue { color: var(--text); font-weight: 600; }
         .credit-detail .detail-row .dvalue.high { color: #ff4d4f; font-size: 16px; }
 
-        /* ===== 额度速算表 ===== */
         .credit-table-card {
             background: #fff;
             border-radius: 16px;
@@ -442,13 +446,9 @@
             color: var(--text-light);
         }
         .credit-table-card th:last-child { text-align: right; }
-        .credit-table-card td {
-            padding: 8px;
-            border-bottom: 1px solid #f0f0f0;
-        }
+        .credit-table-card td { padding: 8px; border-bottom: 1px solid #f0f0f0; }
         .credit-table-card td:last-child { text-align: right; color: var(--primary); font-weight: 600; }
 
-        /* ===== 提示条 ===== */
         .demo-notice {
             background: #fff3e0;
             border-radius: 10px;
@@ -461,7 +461,6 @@
             gap: 6px;
         }
 
-        /* ===== 底部 ===== */
         .footer {
             text-align: center;
             padding: 20px;
@@ -469,7 +468,6 @@
             font-size: 12px;
         }
 
-        /* ===== 响应式 ===== */
         @media (max-width: 500px) {
             .main-container { padding: 12px 12px 20px; }
             .search-card { border-radius: 14px; padding: 18px 16px; }
@@ -479,7 +477,6 @@
 </head>
 <body>
 
-<!-- ===== 顶部导航 ===== -->
 <div class="top-bar">
     <div class="top-bar-inner">
         <div class="site-name">
@@ -490,10 +487,8 @@
     </div>
 </div>
 
-<!-- ===== 主体 ===== -->
 <div class="main-container">
 
-    <!-- Tab 切换 -->
     <div class="tab-bar">
         <button class="tab active" onclick="switchTab('query')">📋 报告查询</button>
         <button class="tab" onclick="switchTab('credit')">💰 开票评估</button>
@@ -501,76 +496,50 @@
 
     <!-- ===== Tab: 报告查询 ===== -->
     <div id="tab-query">
+
+        <!-- 数据源对接说明 -->
+        <div class="data-source-bar">
+            <div class="logo-icon">🧪</div>
+            <div class="info">
+                <div class="title">水母报告 · 企业信用查询</div>
+                <div class="desc">对接真实数据源，输入企业名称一键查询</div>
+            </div>
+            <button class="go-btn" onclick="openRealSite()">立即查询</button>
+        </div>
+
         <div class="quick-actions">
             <button class="action-btn" onclick="showQRCode()">
                 <div class="icon">📱</div>
-                <div class="label">扫码查询</div>
+                <div class="label">出示二维码</div>
             </button>
-            <button class="action-btn" onclick="showMobileTip()">
-                <div class="icon">🔍</div>
-                <div class="label">手机查询</div>
+            <button class="action-btn" onclick="openRealSite()">
+                <div class="icon">🔗</div>
+                <div class="label">打开水母报告</div>
             </button>
-            <button class="action-btn" onclick="queryExample('上海华为技术有限公司')">
+            <button class="action-btn" onclick="showQRCode()">
                 <div class="icon">📌</div>
-                <div class="label">示例查询</div>
+                <div class="label">手机扫码查询</div>
             </button>
         </div>
 
-        <div class="search-card">
-            <div class="title">🔍 企业水母报告查询</div>
-            <div class="subtitle">输入企业名称或统一社会信用代码，一键查询企业信用报告</div>
-
-            <div class="example-tags">
-                <span class="tag" onclick="queryExample('上海华为技术有限公司')">华为</span>
-                <span class="tag" onclick="queryExample('阿里巴巴（中国）有限公司')">阿里巴巴</span>
-                <span class="tag" onclick="queryExample('腾讯科技（深圳）有限公司')">腾讯</span>
-                <span class="tag" onclick="queryExample('上海寻梦信息技术有限公司')">拼多多</span>
-            </div>
-
-            <div class="search-input-group">
-                <input type="text" id="searchInput" placeholder="输入企业名称 / 统一信用代码" onkeydown="if(event.key==='Enter')doSearch()">
-                <button class="search-btn" id="searchBtn" onclick="doSearch()">查询</button>
-            </div>
-
-            <div class="loading" id="searchLoading">
-                <div class="spinner"></div>
-                <div class="text">查询中，请稍候...</div>
-            </div>
+        <!-- 直接跳转到水母报告 -->
+        <div class="redirect-card">
+            <div class="big-icon">🔍</div>
+            <h3>企业水母报告查询</h3>
+            <p>本平台已对接水母报告数据源，点击下方按钮跳转至水母报告官网查询企业信用报告</p>
+            <button class="open-btn" onclick="openRealSite()">
+                🔗 打开水母报告 · 立即查询
+            </button>
         </div>
 
-        <div class="mobile-qr-tip" id="mobileTip">
-            <div class="tip-icon">📱</div>
-            <div class="tip-text">请在手机浏览器中打开本页面，或扫描页面二维码访问</div>
-            <div id="qrcodeMobile" style="display:inline-block;margin-top:12px;padding:8px;background:#fff;border-radius:8px;"></div>
-        </div>
-
-        <div class="result-card" id="resultCard">
-            <div class="company-name" id="companyName">—</div>
-            <div class="company-info" id="companyInfo">统一社会信用代码：—</div>
-            <div class="info-grid">
-                <div class="info-item">
-                    <div class="label">法定代表人</div>
-                    <div class="value" id="legalPerson">—</div>
-                </div>
-                <div class="info-item">
-                    <div class="label">注册资本</div>
-                    <div class="value" id="regCapital">—</div>
-                </div>
-                <div class="info-item">
-                    <div class="label">成立日期</div>
-                    <div class="value" id="establishDate">—</div>
-                </div>
-                <div class="info-item">
-                    <div class="label">经营状态</div>
-                    <div class="value green" id="operateStatus">—</div>
-                </div>
-                <div class="info-item" style="grid-column: span 2;">
-                    <div class="label">企业地址</div>
-                    <div class="value" id="companyAddr" style="font-size:13px;">—</div>
-                </div>
-            </div>
-            <div style="margin-top:14px;text-align:center;">
-                <button class="search-btn" style="width:100%;" onclick="switchTab('credit')">查看信用额度 →</button>
+        <!-- 扫码弹窗 -->
+        <div class="qr-modal" id="qrModal" onclick="if(event.target===this)hideQRCode()">
+            <div class="qr-box">
+                <h3>📱 手机扫码查询</h3>
+                <p>使用手机扫描下方二维码，打开水母报告官网查询企业信用</p>
+                <img src="shuimu_qr.jpg" alt="水母报告二维码" class="qr-img" id="qrCodeImg">
+                <div class="qr-url">https://shuimui.szsmjr.com/index.html#/q</div>
+                <button class="close-btn" onclick="hideQRCode()">关闭</button>
             </div>
         </div>
     </div>
@@ -671,19 +640,8 @@
     </div>
 
     <div class="footer">
-        默裕企服 · 水母报告查询 · 数据来源于公开信息<br>
-        仅供企业信用参考，不构成投资建议
-    </div>
-</div>
-
-<!-- ===== 扫码弹窗 ===== -->
-<div class="qr-modal" id="qrModal">
-    <div class="qr-box">
-        <h3>📱 手机扫码查询</h3>
-        <p>使用手机扫描下方二维码，随时随地查询企业信用报告</p>
-        <div id="qrcodeModal"></div>
-        <div style="margin-top:12px;font-size:13px;color:#666;" id="qrUrlDisplay"></div>
-        <button class="close-btn" onclick="hideQRCode()">关闭</button>
+        默裕企服 · 对接水母报告数据 · 企业信用查询<br>
+        跳转至水母报告官网查询真实数据，开票评估为默裕企服自有服务
     </div>
 </div>
 
@@ -706,134 +664,22 @@ function switchTab(tab) {
     }
 }
 
-// ===================== QR 码 =====================
-let qrModalInstance = null;
-let qrMobileInstance = null;
+// ===================== 跳转到真实水母报告网站 =====================
+function openRealSite() {
+    window.open('https://shuimui.szsmjr.com/index.html#/q', '_blank');
+}
 
+// ===================== 扫码弹窗 =====================
 function showQRCode() {
     document.getElementById('qrModal').classList.add('show');
-    const url = window.location.href;
-    document.getElementById('qrUrlDisplay').textContent = url;
-    setTimeout(() => {
-        const c = document.getElementById('qrcodeModal');
-        c.innerHTML = '';
-        qrModalInstance = new QRCode(c, { text: url, width: 180, height: 180, correctLevel: QRCode.CorrectLevel.H });
-    }, 100);
 }
-function hideQRCode() { document.getElementById('qrModal').classList.remove('show'); }
-document.getElementById('qrModal').addEventListener('click', function(e) { if (e.target === this) hideQRCode(); });
-
-function showMobileTip() {
-    const tip = document.getElementById('mobileTip');
-    tip.classList.toggle('show');
-    if (!qrMobileInstance) {
-        setTimeout(() => {
-            const c = document.getElementById('qrcodeMobile');
-            c.innerHTML = '';
-            qrMobileInstance = new QRCode(c, { text: window.location.href, width: 150, height: 150, correctLevel: QRCode.CorrectLevel.H });
-        }, 100);
-    }
-}
-
-// ===================== 企业查询 =====================
-const MOCK_DATA = {
-    '上海华为技术有限公司': {
-        name: '上海华为技术有限公司',
-        creditCode: '91310000MA1FL1MF4D',
-        legalPerson: '赵明路',
-        capital: '10000 万元人民币',
-        establishDate: '2001-01-16',
-        status: '存续（在营）',
-        address: '上海市浦东新区新金桥路2222号'
-    },
-    '阿里巴巴（中国）有限公司': {
-        name: '阿里巴巴（中国）有限公司',
-        creditCode: '91330100799China01',
-        legalPerson: '吴泳铭',
-        capital: '23000 万美元',
-        establishDate: '2007-03-26',
-        status: '存续（在营）',
-        address: '浙江省杭州市余杭区文一西路969号'
-    },
-    '腾讯科技（深圳）有限公司': {
-        name: '腾讯科技（深圳）有限公司',
-        creditCode: '914403007087205113',
-        legalPerson: '马化腾',
-        capital: '65000 万元人民币',
-        establishDate: '2000-02-24',
-        status: '存续（在营）',
-        address: '深圳市南山区粤海街道麻岭社区科技中一路腾讯大厦'
-    },
-    '上海寻梦信息技术有限公司': {
-        name: '上海寻梦信息技术有限公司',
-        creditCode: '913101143013433578',
-        legalPerson: '赵佳臻',
-        capital: '1000 万元人民币',
-        establishDate: '2014-01-09',
-        status: '存续（在营）',
-        address: '上海市长宁区娄山关路533号'
-    }
-};
-
-function doSearch() {
-    const input = document.getElementById('searchInput').value.trim();
-    if (!input) {
-        document.getElementById('searchInput').style.borderColor = '#ff4d4f';
-        setTimeout(() => document.getElementById('searchInput').style.borderColor = '#e2e8f0', 1500);
-        return;
-    }
-    const btn = document.getElementById('searchBtn');
-    const loading = document.getElementById('searchLoading');
-    const result = document.getElementById('resultCard');
-    btn.disabled = true;
-    btn.textContent = '查询中...';
-    loading.classList.add('show');
-    result.classList.remove('show');
-
-    setTimeout(() => {
-        let data = null;
-        for (const [key, val] of Object.entries(MOCK_DATA)) {
-            if (input.includes(key.slice(0, 4)) || key.includes(input.slice(0, 4))) {
-                data = val; break;
-            }
-        }
-        for (const val of Object.values(MOCK_DATA)) {
-            if (val.creditCode === input) { data = val; break; }
-        }
-        if (!data) {
-            data = {
-                name: input,
-                creditCode: '91' + String(Math.random()).slice(2, 16),
-                legalPerson: '—',
-                capital: '查询中...',
-                establishDate: '—',
-                status: '存续（在营）',
-                address: '—'
-            };
-        }
-        document.getElementById('companyName').textContent = data.name;
-        document.getElementById('companyInfo').textContent = '统一社会信用代码：' + data.creditCode;
-        document.getElementById('legalPerson').textContent = data.legalPerson;
-        document.getElementById('regCapital').textContent = data.capital;
-        document.getElementById('establishDate').textContent = data.establishDate;
-        document.getElementById('operateStatus').textContent = data.status;
-        document.getElementById('companyAddr').textContent = data.address;
-        loading.classList.remove('show');
-        result.classList.add('show');
-        btn.disabled = false;
-        btn.textContent = '查询';
-    }, 1500);
-}
-
-function queryExample(name) {
-    document.getElementById('searchInput').value = name;
-    doSearch();
+function hideQRCode() {
+    document.getElementById('qrModal').classList.remove('show');
 }
 
 // ===================== 开票评估 =====================
 function evaluateCredit() {
     const company = document.getElementById('invoiceCompany').value.trim() || '未命名企业';
-    const year = document.getElementById('invoiceYear').value;
     const industry = document.getElementById('invoiceIndustry').value;
     const amount = parseFloat(document.getElementById('invoiceAmount').value) || 0;
     const count = parseInt(document.getElementById('invoiceCount').value) || 0;
