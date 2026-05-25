@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>水母报告 — 默裕企服 · 企业信用查询</title>
-    <meta name="description" content="默裕企服 · 企业水母报告查询，对接真实数据源，输入企业名称或信用代码一键查询企业信用报告。开票信用评估，额度最高500万。">
+    <meta name="description" content="默裕企服 · 企业水母报告查询，对接真实数据源，输入企业名称或信用代码一键查询企业信用报告。开票信用评估，额度最高5000万。">
     <style>
         :root {
             --primary: #1a56db;
@@ -557,7 +557,7 @@
 
         <div class="credit-card">
             <div class="title">💰 企业开票信用评估</div>
-            <div class="subtitle">输入企业开票数据，系统自动评估可贷额度（最高 <strong style="color:#ff4d4f;">500万</strong>）</div>
+            <div class="subtitle">输入企业开票数据，系统自动评估可贷额度（最高 <strong style="color:#ff4d4f;">5000万</strong>）</div>
 
             <div class="credit-amount" id="creditDisplay">
                 <div class="label">预估可贷额度</div>
@@ -635,10 +635,11 @@
             <table>
                 <tr><th>年开票金额</th><th>预估额度</th></tr>
                 <tr><td>50-100 万</td><td>10-30 万</td></tr>
-                <tr><td>100-300 万</td><td>30-80 万</td></tr>
-                <tr><td>300-500 万</td><td>80-150 万</td></tr>
-                <tr><td>500-1000 万</td><td>150-300 万</td></tr>
-                <tr><td>1000 万以上</td><td style="color:#ff4d4f;font-weight:700;">300-500 万</td></tr>
+                <tr><td>100-300 万</td><td>30-100 万</td></tr>
+                <tr><td>300-500 万</td><td>100-300 万</td></tr>
+                <tr><td>500-1000 万</td><td>300-800 万</td></tr>
+                <tr><td>1000-5000 万</td><td style="color:#ff4d4f;font-weight:700;">800-3000 万</td></tr>
+                <tr><td>5000 万以上</td><td style="color:#ff4d4f;font-weight:700;">3000-5000 万</td></tr>
             </table>
         </div>
     </div>
@@ -711,14 +712,14 @@ function evaluateCredit() {
     const qualityFactor = qualityScore / 100;
     let baseCredit = amount * coeff * qualityFactor * 0.6;
     let finalCredit = Math.round(baseCredit * 100) / 100;
-    if (finalCredit > 500) finalCredit = 500;
+    if (finalCredit > 5000) finalCredit = 5000;
 
     const industryNames = { 'tech': '科技/信息技术', 'manufacture': '制造业', 'trade': '贸易/批发零售', 'service': '服务业', 'construction': '建筑业', 'food': '餐饮/食品', 'logistics': '物流/运输', 'other': '其他' };
 
     let displayAmount = finalCredit;
     if (displayAmount >= 50) displayAmount = Math.round(displayAmount * 1.15);
     else if (displayAmount > 0) displayAmount = Math.round(displayAmount * 1.3);
-    if (displayAmount > 500) displayAmount = 500;
+    if (displayAmount > 5000) displayAmount = 5000;
 
     document.getElementById('creditAmount').innerHTML = displayAmount + '<span class="unit"> 万元</span>';
     document.getElementById('detailName').textContent = company;
