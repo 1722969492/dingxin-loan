@@ -120,20 +120,11 @@
 
         /* ===== 服务 ===== */
         #services{background:var(--bg-alt)}
-        .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-        .service-card{background:#fff;border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);transition:var(--transition);border:1px solid var(--border);position:relative;overflow:hidden}
-        .service-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(42,102,231,.12);border-color:#2a66e7}
-        .service-card .icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px}
-        .service-card:nth-child(1) .icon{background:rgba(26,86,219,.1);color:var(--primary)}
-        .service-card:nth-child(2) .icon{background:rgba(245,158,11,.1);color:var(--accent)}
-        .service-card:nth-child(3) .icon{background:rgba(16,185,129,.1);color:#10b981}
-        .service-card:nth-child(4) .icon{background:rgba(239,68,68,.1);color:#ef4444}
-        .service-card:nth-child(5) .icon{background:rgba(139,92,246,.1);color:#8b5cf6}
-        .service-card:nth-child(6) .icon{background:rgba(236,72,153,.1);color:#ec4899}
-        .service-card:nth-child(7) .icon{background:rgba(14,165,233,.1);color:#0ea5e9}
-        .service-card:nth-child(8) .icon{background:rgba(168,85,247,.1);color:#a855f7}
-        .service-card:nth-child(9) .icon{background:rgba(249,115,22,.1);color:#f97316}
-        .service-card:nth-child(10) .icon{background:rgba(20,184,166,.1);color:#14b8a6}
+        .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+        .service-card{background:#fff;border-radius:8px;padding:28px 24px;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:var(--transition);border:1px solid var(--border);position:relative;overflow:hidden}
+        .service-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(42,102,231,.10);border-color:#2a66e7}
+        .service-card .icon{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+        .service-card:nth-child(1) .icon,.service-card:nth-child(2) .icon,.service-card:nth-child(3) .icon,.service-card:nth-child(4) .icon,.service-card:nth-child(5) .icon,.service-card:nth-child(6) .icon,.service-card:nth-child(7) .icon,.service-card:nth-child(8) .icon,.service-card:nth-child(9) .icon,.service-card:nth-child(10) .icon,.service-card:nth-child(11) .icon{background:rgba(42,102,231,.08);color:#2a66e7}
         .service-card h3{font-size:20px;font-weight:700;margin-bottom:10px}
         .service-card p{font-size:14px;color:var(--text-light);line-height:1.7;margin-bottom:16px}
         .service-card .tags{display:flex;flex-wrap:wrap;gap:6px}
@@ -402,13 +393,23 @@
 <section id="services">
     <div class="container">
         <div class="text-center">
-            <div class="section-tag">Our Services</div>
-            <h2 class="section-title">金融服务产品</h2>
-            <p class="section-desc">覆盖企业全生命周期融资需求，与30+银行深度合作，精准匹配最优方案</p>
+            <div class="section-tag">金融产品</div>
+            <h2 class="section-title">全方位融资服务</h2>
+            <p class="section-desc">覆盖企业全生命周期融资需求，一站式对接金融机构，精准匹配最优方案</p>
         </div>
         <div class="services-grid">
             <div class="service-card">
-                <div class="icon">💳</div>
+                <div class="icon" style="background:rgba(240,176,23,.12);color:#f0b017;">🏢</div>
+                <h3>企业经营贷款</h3>
+                <p>含流动资金贷款、周转贷款、固定资产贷款、技改贷款。为中小微企业提供全方位经营资金支持，额度最高1000万。</p>
+                <div class="tags">
+                    <span>最高1000万</span>
+                    <span>纯信用</span>
+                    <span>3-5天放款</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="icon" style="background:rgba(42,102,231,.10);color:#2a66e7;">💳</div>
                 <h3>个人信用贷款</h3>
                 <p>无需抵押担保，凭信用即可申请。额度最高50万，最快当天放款，随借随还灵活方便。</p>
                 <div class="tags">
@@ -416,20 +417,30 @@
                     <span>月利率0.35%起</span>
                     <span>1天放款</span>
                 </div>
-                <span class="rate">★ 最受欢迎</span>
+                <span class="rate">★ 热门产品</span>
             </div>
             <div class="service-card">
-                <div class="icon">🏢</div>
-                <h3>企业经营贷款</h3>
-                <p>为中小微企业提供流动资金支持，额度最高1000万，支持税贷、流水贷、发票贷等多种模式。</p>
+                <div class="icon" style="background:rgba(84,170,109,.12);color:#54aa6d;">📄</div>
+                <h3>税e融 · 税务贷款</h3>
+                <p>基于企业纳税记录纯信用授信，纳税满1年即可申请，额度循环使用，随借随还，利率优惠。</p>
                 <div class="tags">
-                    <span>最高1000万</span>
-                    <span>纯信用可申请</span>
-                    <span>3-5天放款</span>
+                    <span>最高500万</span>
+                    <span>纯信用</span>
+                    <span>按日计息</span>
                 </div>
             </div>
             <div class="service-card">
-                <div class="icon">🏠</div>
+                <div class="icon" style="background:rgba(240,176,23,.12);color:#f0b017;">💰</div>
+                <h3>发票贷 · 开票融资</h3>
+                <p>基于企业开票数据的专属融资产品，额度最高5000万，线上申请极速审批，无需抵押，开票即贷。</p>
+                <div class="tags">
+                    <span>最高5000万</span>
+                    <span>开票评估</span>
+                    <span>极速审批</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="icon" style="background:rgba(42,102,231,.10);color:#2a66e7;">🏠</div>
                 <h3>房产抵押贷款</h3>
                 <p>自有房产抵押融资，额度高、利率低、期限长，可用于经营周转或大额消费。</p>
                 <div class="tags">
@@ -439,29 +450,9 @@
                 </div>
             </div>
             <div class="service-card">
-                <div class="icon">💰</div>
-                <h3>税e融 · 税务贷款</h3>
-                <p>基于企业纳税记录纯信用授信，纳税满1年即可申请，额度循环使用，随借随还。</p>
-                <div class="tags">
-                    <span>最高500万</span>
-                    <span>纯信用</span>
-                    <span>按日计息</span>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="icon">📄</div>
-                <h3>发票贷 · 开票融资</h3>
-                <p>基于企业开票数据的专属融资产品，额度最高5000万，线上申请极速审批，无需抵押。</p>
-                <div class="tags">
-                    <span>最高5000万</span>
-                    <span>开票评估</span>
-                    <span>极速审批</span>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="icon">🔬</div>
-                <h3>科技型企业贷款</h3>
-                <p>面向高新技术企业、专精特新、科技型中小企业的专属融资产品，支持知识产权质押、股权质押等。</p>
+                <div class="icon" style="background:rgba(84,170,109,.12);color:#54aa6d;">🔬</div>
+                <h3>科技创新贷</h3>
+                <p>面向高新技术企业、专精特新、科技型中小企业的专属融资产品，支持知识产权质押、股权质押。</p>
                 <div class="tags">
                     <span>最高3000万</span>
                     <span>贴息支持</span>
@@ -469,7 +460,7 @@
                 </div>
             </div>
             <div class="service-card">
-                <div class="icon">🎓</div>
+                <div class="icon" style="background:rgba(240,176,23,.12);color:#f0b017;">🎓</div>
                 <h3>创业担保贷款</h3>
                 <p>政府贴息支持的创业贷款，为初创企业和小微创业者提供低成本启动资金，最高可享财政全额贴息。</p>
                 <div class="tags">
@@ -479,9 +470,9 @@
                 </div>
             </div>
             <div class="service-card">
-                <div class="icon">🔄</div>
+                <div class="icon" style="background:rgba(42,102,231,.10);color:#2a66e7;">🔄</div>
                 <h3>供应链金融</h3>
-                <p>基于核心企业信用的上下游融资服务，支持应收账款质押、订单融资、存货质押等。</p>
+                <p>基于核心企业信用的上下游融资服务，支持应收账款质押、订单融资、存货质押，产业链协同融资。</p>
                 <div class="tags">
                     <span>最高5000万</span>
                     <span>循环授信</span>
@@ -489,9 +480,9 @@
                 </div>
             </div>
             <div class="service-card">
-                <div class="icon">🌾</div>
-                <h3>助农/惠农贷款</h3>
-                <p>面向农业合作社、家庭农场、种植养殖大户的专项融资服务，支持农地经营权抵押、季节性还款。</p>
+                <div class="icon" style="background:rgba(84,170,109,.12);color:#54aa6d;">🌾</div>
+                <h3>惠农快贷</h3>
+                <p>面向农业合作社、家庭农场、种植养殖大户的专项融资服务，支持农地经营权抵押、政策性贴息。</p>
                 <div class="tags">
                     <span>最高500万</span>
                     <span>农地抵押</span>
@@ -499,13 +490,13 @@
                 </div>
             </div>
             <div class="service-card">
-                <div class="icon">💎</div>
-                <h3>人才贷 · 人才创业贷</h3>
-                <p>面向高层次人才创办企业的专属融资产品，凭人才资质即可申请，额度高、利率优、审批快。</p>
+                <div class="icon" style="background:rgba(240,176,23,.12);color:#f0b017;">💎</div>
+                <h3>知识产权质押贷</h3>
+                <p>以专利、商标、著作权等知识产权作为质押物，助力科技型企业解决轻资产融资难题，享受贴息支持。</p>
                 <div class="tags">
                     <span>最高1000万</span>
-                    <span>人才专属</span>
-                    <span>快速审批</span>
+                    <span>评估贴息</span>
+                    <span>科技专属</span>
                 </div>
             </div>
             <div class="service-card" style="cursor:pointer;" onclick="location.href='report.html'">
